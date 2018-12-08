@@ -13,6 +13,7 @@ import {CategoriesComponent} from "./component/categories/categories.component";
 import {ProductComponent} from "./component/product/product.component";
 
 import { RegisterComponent } from './register/register.component';
+import { PersonalAreaComponent } from './personal-area/personal-area.component';
 
 
 const appRoutes: Routes = [
@@ -20,7 +21,8 @@ const appRoutes: Routes = [
   {path: 'registration', component: RegisterComponent},
   {path: 'categories', component: CategoriesComponent},
   {path: 'product', component: ProductComponent},
-  {path: 'category', component: CategoryComponent}
+  {path: 'category', component: CategoryComponent},
+  {path: 'personalArea', component: PersonalAreaComponent}
   ];
 
 @NgModule({
@@ -28,6 +30,8 @@ const appRoutes: Routes = [
     AppComponent,
     HeaderComponent,
     LoginComponent,
+    RegisterComponent,
+    PersonalAreaComponent,
     CategoryComponent,
     CategoriesComponent,
     ProductComponent,

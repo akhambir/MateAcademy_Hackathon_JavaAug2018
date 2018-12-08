@@ -17,12 +17,20 @@ export class UserService {
     );
   }
 
-  /*public login(user: User): Observable<boolean> {
+  public login(user: User): Observable<boolean> {
     return this.http.post<User>(
       'http://localhost:8080/login', user, {observe: 'response'}).pipe(
         map(resp => {
+          localStorage.setItem('email', JSON.stringify(user));
 
-        })
-    )
-  }*/
+          return true;
+        }));
+  }
+
+  public pollUser(): Observable<User> {
+    let user: User = new User();
+    user.email = JSON.parse(localStorage.getItem('email')).user;
+
+    return this.http.post<User>('http://localhost:8080/user/by-email', user);
+  }
 }
