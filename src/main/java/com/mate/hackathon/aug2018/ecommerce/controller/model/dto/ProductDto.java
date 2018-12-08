@@ -2,6 +2,7 @@ package com.mate.hackathon.aug2018.ecommerce.controller.model.dto;
 
 import com.mate.hackathon.aug2018.ecommerce.model.Category;
 import com.mate.hackathon.aug2018.ecommerce.model.Product;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,6 +29,10 @@ public class ProductDto {
         return products.stream()
                 .map(ProductDto::of)
                 .collect(Collectors.toList());
+    }
+
+    public static ProductDto empty() {
+        return new ProductDto();
     }
 
     public String getName() {
