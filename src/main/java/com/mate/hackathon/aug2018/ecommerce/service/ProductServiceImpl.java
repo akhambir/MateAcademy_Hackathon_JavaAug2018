@@ -20,6 +20,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public Optional<Product> findByProductCode(Long productCode) {
+        return productDao.findByProductCode(productCode);
+    }
+
+    @Override
     public List<Product> findAll() {
         return productDao.findAll();
     }

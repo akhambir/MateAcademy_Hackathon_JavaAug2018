@@ -9,6 +9,8 @@ public interface ProductService {
 
     Optional<Product> findById(Long id);
 
+    Optional<Product> findByProductCode(Long productCode);
+
     List<Product> findAll();
 
     Product save(Product product);
