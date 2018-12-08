@@ -41,8 +41,15 @@ public class ProductController {
         return getAllProducts();
     }
 
+    @GetMapping("/admin/products/{productCode}")
+    public ResponseEntity<ProductDto> showEditPage(@PathVariable Long productCode) {
+        return productService.findByProductCode(productCode)
+                .map(ProductDto::of)
+                .map(ResponseEntity::ok)
+                .orElseGet(ResponseEntity.notFound()::build);
+    }
+
     //TODO: GET edit page
     //TODO: GET create product
-    //TODO: POST save product
     //TODO: GET delete product
 }
