@@ -3,6 +3,9 @@ package com.mate.hackathon.aug2018.ecommerce.controller.model.dto;
 import com.mate.hackathon.aug2018.ecommerce.model.Category;
 import com.mate.hackathon.aug2018.ecommerce.model.Product;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class ProductDto {
 
     private String name;
@@ -17,6 +20,12 @@ public class ProductDto {
         productDto.setDescription(product.getDescription());
         productDto.setCategory(product.getCategory());
         return productDto;
+    }
+
+    public static List<ProductDto> of(List<Product> products) {
+        return products.stream()
+                .map(ProductDto::of)
+                .collect(Collectors.toList());
     }
 
     public String getName() {
