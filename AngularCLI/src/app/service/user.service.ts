@@ -17,12 +17,12 @@ export class UserService {
     );
   }
 
-  public login(user: User): Observable<boolean> {
+  /*public login(user: User): Observable<boolean> {
     return this.http.post<User>(
       'http://localhost:8080/login', user, {observe: 'response'}).pipe(
         map(resp => {
 
         })
     )
-  }
+  }*/
 }
