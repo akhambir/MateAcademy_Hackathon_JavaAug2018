@@ -28,7 +28,7 @@ public class ProductController {
     }
 
     @GetMapping("/{productCode}")
-    public ResponseEntity<ProductDto> getProductById(@PathVariable Long productCode) {
+    public ResponseEntity<ProductDto> getProductByProductCode(@PathVariable String productCode) {
         return productService.findByProductCode(productCode)
                 .map(ProductDto::of)
                 .map(ResponseEntity::ok)
@@ -42,7 +42,7 @@ public class ProductController {
     }
 
     @GetMapping("/admin/products/{productCode}")
-    public ResponseEntity<ProductDto> showEditPage(@PathVariable Long productCode) {
+    public ResponseEntity<ProductDto> showEditPage(@PathVariable String productCode) {
         return productService.findByProductCode(productCode)
                 .map(ProductDto::of)
                 .map(ResponseEntity::ok)
@@ -55,7 +55,7 @@ public class ProductController {
     }
 
     @GetMapping("/admin/products/delete_{productCode}")
-    public ResponseEntity<List<ProductDto>> deleteByProductCode(@PathVariable Long productCode) {
+    public ResponseEntity<List<ProductDto>> deleteByProductCode(@PathVariable String productCode) {
         productService.deleteByProductCode(productCode);
         return getAllProducts();
     }
