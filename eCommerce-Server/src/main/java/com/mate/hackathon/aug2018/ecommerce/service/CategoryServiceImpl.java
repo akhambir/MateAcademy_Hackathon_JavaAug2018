@@ -9,15 +9,15 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ImplCategoryService implements CategoryService {
+public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
     private CategoryRepository categoryRepository;
 
 
     @Override
-    public Optional<Category> findByName(Long id) {
-        return categoryRepository.findById(id);
+    public Optional<Category> findByName(String name) {
+        return categoryRepository.findByName(name);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class ImplCategoryService implements CategoryService {
     }
 
     @Override
-    public void deleteById(Long id) {
-        categoryRepository.deleteById(id);
+    public void deleteByName(String name) {
+        categoryRepository.deleteByName(name);
     }
 }
