@@ -40,12 +40,12 @@ class UserController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @PutMapping("admin/user/{id}")
+    @PutMapping("/admin/user/{id}")
     public User updateUser(@RequestBody User user, @PathVariable Long id) {
         return service.update(user, id);
     }
 
-    @DeleteMapping("admin/user/{id}")
+    @DeleteMapping("/admin/user/{id}")
     void delete(@PathVariable Long id) {
         service.delete(id);
     }
