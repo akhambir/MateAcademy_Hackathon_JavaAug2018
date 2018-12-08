@@ -1,5 +1,6 @@
 package com.mate.hackathon.aug2018.ecommerce.controller;
 
+import com.mate.hackathon.aug2018.ecommerce.model.User;
 import com.mate.hackathon.aug2018.ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,25 +21,34 @@ class UserController {
     @Autowired
     private UserService service;
 
-    @GetMapping("/users")
-    List<com.mate.hackathon.aug2018.ecommerce.model.User> getAll() {
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/admin/users")
+    public List<User> getAll() {
         return service.getAll();
     }
 
-    @PostMapping("/users")
-    com.mate.hackathon.aug2018.ecommerce.model.User addUser(@RequestBody com.mate.hackathon.aug2018.ecommerce.model.User user) {
-        return null;
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/admin/users")
+    public User addUser(@RequestBody User user) {
+        return service.create(user);
     }
 
-    @GetMapping("/users/{id}")
-    Optional<com.mate.hackathon.aug2018.ecommerce.model.User> getUser(@PathVariable Long id) {
-        return null;
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/admin/users/{id}")
+    public Optional<User> getUser(@PathVariable Long id) {
+        return service.getById(id);
     }
 
-    @PutMapping("/user/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PutMapping("/admin/user/{id}")
+    public User updateUser(@RequestBody User user, @PathVariable Long id) {
+        user.setId(id);
+        return service.update(user);
+    }
 
-    @DeleteMapping("/user/{id}")
-    void deleteEmployee(@PathVariable Long id) {
+    @DeleteMapping("/admin/user/{id}")
+    public void delete(@PathVariable Long id) {
+        service.delete(id);
     }
 
 }
