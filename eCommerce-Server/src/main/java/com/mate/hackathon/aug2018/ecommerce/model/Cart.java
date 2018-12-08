@@ -45,4 +45,8 @@ public class Cart {
     public void addProduct(Product product, Integer quantity) {
         products.put(product, quantity);
     }
+
+    public void deleteProduct(Product product) {
+        products.remove(product);
+    }
 }
