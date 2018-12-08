@@ -49,7 +49,10 @@ public class ProductController {
                 .orElseGet(ResponseEntity.notFound()::build);
     }
 
-    //TODO: GET edit page
-    //TODO: GET create product
-    //TODO: GET delete product
+    @GetMapping("/admin/products/create")
+    public ResponseEntity<ProductDto> showCreatePage() {
+        return ResponseEntity.ok(ProductDto.empty());
+    }
+
+
 }
