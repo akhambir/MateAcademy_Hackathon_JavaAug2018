@@ -5,9 +5,18 @@ import java.util.Map;
 
 public class Cart {
 
+    private Long id;
     private User customer;
     private Map<Product, Integer> products = new HashMap<>();
     private Double amount;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public User getCustomer() {
         return customer;
