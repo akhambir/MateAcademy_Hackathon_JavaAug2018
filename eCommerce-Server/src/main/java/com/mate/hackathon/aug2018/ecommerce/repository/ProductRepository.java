@@ -5,9 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface ProductDao extends JpaRepository<Product, Long> {
+public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    Optional<Product> findByProductCode(Long productCode);
+    Optional<Product> findByProductCode(String productCode);
 
-    void deleteByProductCode(Long productCode);
+    void deleteByProductCode(String productCode);
 }

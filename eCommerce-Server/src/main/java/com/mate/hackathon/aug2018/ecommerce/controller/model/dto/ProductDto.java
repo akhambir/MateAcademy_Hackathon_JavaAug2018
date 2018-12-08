@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class ProductDto {
 
-    private Long productCode;
+    private String productCode;
     private String name;
     private String description;
     private double price;
@@ -66,11 +66,11 @@ public class ProductDto {
         this.category = category;
     }
 
-    public Long getProductCode() {
+    public String getProductCode() {
         return productCode;
     }
 
-    public void setProductCode(Long productCode) {
+    public void setProductCode(String productCode) {
         this.productCode = productCode;
     }
 }
