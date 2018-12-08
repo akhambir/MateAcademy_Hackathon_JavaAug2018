@@ -28,7 +28,7 @@ public class ProductController {
     }
 
     @GetMapping("/{productCode}")
-    public ResponseEntity<ProductDto> getProductById(@PathVariable Long productCode) {
+    public ResponseEntity<ProductDto> getProductByProductCode(@PathVariable Long productCode) {
         return productService.findByProductCode(productCode)
                 .map(ProductDto::of)
                 .map(ResponseEntity::ok)
