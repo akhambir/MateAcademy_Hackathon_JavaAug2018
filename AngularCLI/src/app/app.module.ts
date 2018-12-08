@@ -22,7 +22,8 @@ const appRoutes: Routes = [
   {path: 'personalArea', component: PersonalAreaComponent},
   {path: 'categories', component: CategoriesComponent},
   {path: 'category', component: CategoryComponent},
-  {path: 'product', component: ProductComponent}
+  {path: 'product', component: ProductComponent},
+  {path: 'personalArea', component: PersonalAreaComponent}
   ];
 
 @NgModule({
