@@ -19,7 +19,6 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(name = "/categories")
     public ResponseEntity<List<CategoryDto>> getAllCategory() {
         return Optional.of(categoryService.findAll())
@@ -28,7 +27,6 @@ public class CategoryController {
                 .orElseGet(ResponseEntity.notFound()::build);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(name = "/{categoryName}")
     public ResponseEntity<CategoryDto> getCategory(@PathVariable String name) {
         return categoryService.findByName(name)
@@ -37,14 +35,12 @@ public class CategoryController {
                 .orElseGet(ResponseEntity.notFound()::build);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(name = "/admin/category")
     public ResponseEntity<List<CategoryDto>> save(CategoryDto categoryDto) {
         categoryService.save(Category.of(categoryDto));
         return getAllCategory();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(name = "/admin/category")
     public ResponseEntity<List<CategoryDto>> deleteByName(@PathVariable String name) {
         categoryService.deleteByName(name);

@@ -20,25 +20,21 @@ class UserController {
     @Autowired
     private UserService service;
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/users")
     List<com.mate.hackathon.aug2018.ecommerce.model.User> getAll() {
         return service.getAll();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/users")
     com.mate.hackathon.aug2018.ecommerce.model.User addUser(@RequestBody com.mate.hackathon.aug2018.ecommerce.model.User user) {
         return null;
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/users/{id}")
     Optional<com.mate.hackathon.aug2018.ecommerce.model.User> getUser(@PathVariable Long id) {
         return null;
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("/user/{id}")
 
     @DeleteMapping("/user/{id}")
