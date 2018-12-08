@@ -18,7 +18,7 @@ public class Category {
     @Column(name = "DESCRIPTION")
     private String description;
     @JsonManagedReference
-    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     private List<Product> products;
 
     public Long getId() {
@@ -43,6 +43,14 @@ public class Category {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public static Category of(CategoryDto categoryDto) {
