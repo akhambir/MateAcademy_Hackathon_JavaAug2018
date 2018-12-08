@@ -19,7 +19,7 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @GetMapping(name = "/categories")
+    @RequestMapping(path = "/categories", method = RequestMethod.GET)
     public ResponseEntity<List<CategoryDto>> getAllCategory() {
         return Optional.of(categoryService.findAll())
                 .map(CategoryDto::of)
@@ -27,16 +27,16 @@ public class CategoryController {
                 .orElseGet(ResponseEntity.notFound()::build);
     }
 
-    @GetMapping(name = "/{categoryName}")
-    public ResponseEntity<CategoryDto> getCategory(@PathVariable String name) {
-        return categoryService.findByName(name)
+    @RequestMapping(value = "/{categoryName}", method = RequestMethod.GET)
+    public ResponseEntity<CategoryDto> getCategory(@PathVariable String categoryName) {
+        return categoryService.findByName(categoryName)
                 .map(CategoryDto::of)
                 .map(ResponseEntity::ok)
                 .orElseGet(ResponseEntity.notFound()::build);
     }
 
-    @GetMapping(name = "/admin/category")
-    public ResponseEntity<List<CategoryDto>> saveCategory(CategoryDto categoryDto) {
+    @PostMapping(name = "/admin/category")
+    public ResponseEntity<List<CategoryDto>> saveCategory(@RequestBody CategoryDto categoryDto) {
         categoryService.save(Category.of(categoryDto));
         return getAllCategory();
     }
