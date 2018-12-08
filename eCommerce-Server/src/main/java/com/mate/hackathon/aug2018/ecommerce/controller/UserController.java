@@ -3,6 +3,7 @@ package com.mate.hackathon.aug2018.ecommerce.controller;
 import com.mate.hackathon.aug2018.ecommerce.model.User;
 import com.mate.hackathon.aug2018.ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,27 +24,37 @@ class UserController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/admin/users")
-    public List<User> getAll() {
-        return service.getAll();
+    public ResponseEntity<List<User>> getAll() {
+        return Optional.of(service.getAll())
+                .map(ResponseEntity::ok)
+                .orElseGet(ResponseEntity.notFound()::build);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/admin/users")
-    public User addUser(@RequestBody User user) {
-        return service.create(user);
+    public ResponseEntity<User> addUser(@RequestBody User user) {
+        return Optional.of(service.create(user))
+                .map(ResponseEntity::ok)
+                .orElseGet(ResponseEntity.notFound()::build);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/admin/users/{id}")
-    public Optional<User> getUser(@PathVariable Long id) {
-        return service.getById(id);
+    public ResponseEntity<Optional<User>> getUser(@PathVariable Long id) {
+
+        return Optional.of(service.getById(id))
+                .map(ResponseEntity::ok)
+                .orElseGet(ResponseEntity.notFound()::build);
+
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("/admin/user/{id}")
-    public User updateUser(@RequestBody User user, @PathVariable Long id) {
+    public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable Long id) {
         user.setId(id);
-        return service.update(user);
+        return Optional.of(service.update(user))
+                .map(ResponseEntity::ok)
+                .orElseGet(ResponseEntity.notFound():: build);
     }
 
     @DeleteMapping("/admin/user/{id}")
