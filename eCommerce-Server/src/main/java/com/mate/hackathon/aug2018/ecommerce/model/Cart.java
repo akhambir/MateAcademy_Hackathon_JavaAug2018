@@ -42,17 +42,16 @@ public class Cart {
         this.amount = amount;
     }
 
-    public void addProduct(Product product, Integer quantity) {
-        products.put(product, quantity);
-    }
-
     public void deleteProduct(Product product) {
         products.remove(product);
     }
 
     public void increaseQuantity(Product product, Integer quantity) {
-        Integer previousQuantity = products.get(product);
-        products.put(product, previousQuantity + quantity);
+        if (products.containsKey(product)) {
+            Integer previousQuantity = products.get(product);
+            quantity += previousQuantity;
+        }
+            products.put(product, quantity);
     }
 
     public void decreaseQuantity(Product product, Integer quantity) {
