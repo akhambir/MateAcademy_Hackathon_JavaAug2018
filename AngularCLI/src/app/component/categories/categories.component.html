@@ -2,8 +2,12 @@
   categories works!
 </p>
   <div class="categories">
-    <h2 *ngFor="let c of categories">
-      {{c.name}}
-    </h2>
+    <ul>
+    <li *ngFor="let c of categories">
+      <a href="/category/{{c.id}}"> Some info {{c.name}}</a>
+    </li>
+      <li><a> Category 1</a></li>
+      <li><a> Category 2</a></li>
+    </ul>
   </div>
 

@@ -11,14 +11,17 @@ import {FormsModule} from "@angular/forms";
 import {CategoryComponent} from "./component/category/category.component";
 import {CategoriesComponent} from "./component/categories/categories.component";
 import {ProductComponent} from "./component/product/product.component";
-import {ProductsComponent} from "./component/products/products.component";
 
 import { RegisterComponent } from './register/register.component';
 
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
-  {path: 'registration', component: RegisterComponent}];
+  {path: 'registration', component: RegisterComponent},
+  {path: 'categories', component: CategoriesComponent},
+  {path: 'product', component: ProductComponent},
+  {path: 'category', component: CategoryComponent}
+  ];
 
 @NgModule({
   declarations: [
@@ -28,7 +31,6 @@ const appRoutes: Routes = [
     CategoryComponent,
     CategoriesComponent,
     ProductComponent,
-    ProductsComponent,
     RegisterComponent
   ],
   imports: [
