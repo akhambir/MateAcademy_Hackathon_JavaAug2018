@@ -8,4 +8,6 @@ import java.util.Optional;
 public interface ProductDao extends JpaRepository<Product, Long> {
 
     Optional<Product> findByProductCode(Long productCode);
+
+    void deleteByProductCode(Long productCode);
 }

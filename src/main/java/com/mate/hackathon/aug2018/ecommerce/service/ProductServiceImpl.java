@@ -35,7 +35,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deleteById(Long id) {
-        productDao.deleteById(id);
+    public void deleteByProductCode(Long productCode) {
+        productDao.deleteByProductCode(productCode);
     }
 }
