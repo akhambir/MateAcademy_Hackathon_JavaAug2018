@@ -2,6 +2,7 @@ package com.mate.hackathon.aug2018.ecommerce.controller;
 
 import com.mate.hackathon.aug2018.ecommerce.model.User;
 import com.mate.hackathon.aug2018.ecommerce.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +17,8 @@ import java.util.Optional;
 @RestController
 class UserController {
 
-    private final UserRepository repository;
+    @Autowired
+    private final  UserRepository repository;
 
     UserController(UserRepository repository) {
         this.repository = repository;
