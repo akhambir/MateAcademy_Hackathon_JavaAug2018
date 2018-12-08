@@ -49,4 +49,14 @@ public class Cart {
     public void deleteProduct(Product product) {
         products.remove(product);
     }
+
+    public void increaseQuantity(Product product, Integer quantity) {
+        Integer previousQuantity = products.get(product);
+        products.put(product, previousQuantity + quantity);
+    }
+
+    public void decreaseQuantity(Product product, Integer quantity) {
+        Integer previousQuantity = products.get(product);
+        products.put(product, previousQuantity - quantity);
+    }
 }
