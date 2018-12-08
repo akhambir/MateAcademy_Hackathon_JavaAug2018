@@ -11,7 +11,6 @@ import {FormsModule} from "@angular/forms";
 import {CategoryComponent} from "./component/category/category.component";
 import {CategoriesComponent} from "./component/categories/categories.component";
 import {ProductComponent} from "./component/product/product.component";
-import {ProductsComponent} from "./component/products/products.component";
 
 import { RegisterComponent } from './register/register.component';
 import { PersonalAreaComponent } from './personal-area/personal-area.component';
@@ -20,6 +19,9 @@ import { PersonalAreaComponent } from './personal-area/personal-area.component';
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'registration', component: RegisterComponent},
+  {path: 'categories', component: CategoriesComponent},
+  {path: 'product', component: ProductComponent},
+  {path: 'category', component: CategoryComponent},
   {path: 'personalArea', component: PersonalAreaComponent}
   ];
 
@@ -28,16 +30,12 @@ const appRoutes: Routes = [
     AppComponent,
     HeaderComponent,
     LoginComponent,
-<<<<<<< HEAD
     RegisterComponent,
-    PersonalAreaComponent
-=======
+    PersonalAreaComponent,
     CategoryComponent,
     CategoriesComponent,
     ProductComponent,
-    ProductsComponent,
     RegisterComponent
->>>>>>> a4372681336cf2e40fd2fcd318a26e58f62ac180
   ],
   imports: [
     RouterModule.forRoot(appRoutes,

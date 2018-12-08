@@ -31,7 +31,7 @@ class UserController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @PostMapping("/admin/users")
+    @PostMapping("/users")
     public ResponseEntity<User> addUser(@RequestBody User user) {
         return Optional.of(service.create(user))
                 .map(ResponseEntity::ok)

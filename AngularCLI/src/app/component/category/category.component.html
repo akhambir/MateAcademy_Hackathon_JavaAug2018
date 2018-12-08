@@ -1,3 +1,20 @@
 <p>
   category works!
 </p>
+<div class="category">
+  <h2 >
+    Category name
+    {{category.name}} {{category.description}}
+  </h2>
+</div>
+
+  <div class="products">
+    <ul>
+      <li *ngFor="let p of products">
+        <a href="/product/{{p.id}}"> Some info {{p.name}}</a>
+      </li>
+      <li><a> Product 1</a></li>
+      <li><a> Product 2</a></li>
+    </ul>
+  </div>
+
