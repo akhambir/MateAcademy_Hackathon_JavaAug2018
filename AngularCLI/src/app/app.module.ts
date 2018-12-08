@@ -7,16 +7,18 @@ import { LoginComponent } from './login/login.component';
 import {RouterModule, Routes} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
+import { RegisterComponent } from './register/register.component';
 
 const appRoutes: Routes = [
-  {path: 'login', component: LoginComponent}
-  ]
+  {path: 'login', component: LoginComponent},
+  {path: 'registration', component: RegisterComponent}];
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes,
