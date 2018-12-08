@@ -13,7 +13,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "PRODUCT_CODE")
-    private Long productCode;
+    private String productCode;
     @Column(name = "NAME")
     private String name;
     @Column(name = "DESCRIPTION")
@@ -74,11 +74,11 @@ public class Product {
         this.category = category;
     }
 
-    public Long getProductCode() {
+    public String getProductCode() {
         return productCode;
     }
 
-    public void setProductCode(Long productCode) {
+    public void setProductCode(String productCode) {
         this.productCode = productCode;
     }
 }
