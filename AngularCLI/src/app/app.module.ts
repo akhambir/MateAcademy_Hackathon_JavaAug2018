@@ -7,14 +7,14 @@ import { LoginComponent } from './login/login.component';
 import {RouterModule, Routes} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
-<<<<<<< HEAD
+
 import {CategoryComponent} from "./component/category/category.component";
 import {CategoriesComponent} from "./component/categories/categories.component";
 import {ProductComponent} from "./component/product/product.component";
 import {ProductsComponent} from "./component/products/products.component";
-=======
+
 import { RegisterComponent } from './register/register.component';
->>>>>>> 1647e9fbfbd82b9b9e7213406dc1738a8df32168
+
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -25,14 +25,11 @@ const appRoutes: Routes = [
     AppComponent,
     HeaderComponent,
     LoginComponent,
-<<<<<<< HEAD
     CategoryComponent,
     CategoriesComponent,
     ProductComponent,
-    ProductsComponent
-=======
+    ProductsComponent,
     RegisterComponent
->>>>>>> 1647e9fbfbd82b9b9e7213406dc1738a8df32168
   ],
   imports: [
     RouterModule.forRoot(appRoutes,
