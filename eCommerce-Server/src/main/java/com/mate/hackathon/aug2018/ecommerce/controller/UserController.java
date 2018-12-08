@@ -23,30 +23,31 @@ class UserController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/admin/users")
-    List<User> getAll() {
+    public List<User> getAll() {
         return service.getAll();
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/admin/users")
-    User addUser(@RequestBody User user) {
+    public User addUser(@RequestBody User user) {
         return service.create(user);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/admin/users/{id}")
-    Optional<User> getUser(@PathVariable Long id) {
+    public Optional<User> getUser(@PathVariable Long id) {
         return service.getById(id);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("/admin/user/{id}")
     public User updateUser(@RequestBody User user, @PathVariable Long id) {
-        return service.update(user, id);
+        user.setId(id);
+        return service.update(user);
     }
 
     @DeleteMapping("/admin/user/{id}")
-    void delete(@PathVariable Long id) {
+    public void delete(@PathVariable Long id) {
         service.delete(id);
     }
 
