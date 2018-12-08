@@ -12,10 +12,17 @@ public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @OneToMany(mappedBy = "products", fetch = FetchType.LAZY)
     private Long id;
-    @Column(name = "FK_CUSTOMER_ID")
+//    @Column(name = "FK_CUSTOMER_ID")
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
     private User user;
+    @JoinTable(
+            name = "CARTS_DETAILS",
+            joinColumns = {@JoinColumn(name = "FK_CART_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "FK_PRODUCT_ID")}
+    )
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<Product> products = new ArrayList<>();
     @Column(name = "AMOUNT")
     private Double amount;
