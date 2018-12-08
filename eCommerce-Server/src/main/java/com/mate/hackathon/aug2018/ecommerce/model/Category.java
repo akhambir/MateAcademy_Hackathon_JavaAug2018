@@ -1,5 +1,4 @@
 package com.mate.hackathon.aug2018.ecommerce.model;
-
 import javax.persistence.*;
 
 @Entity
