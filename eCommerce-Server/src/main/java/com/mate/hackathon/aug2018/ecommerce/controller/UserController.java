@@ -28,7 +28,7 @@ class UserController {
                 .map(ResponseEntity::ok)
                 .orElseGet(ResponseEntity.notFound()::build);
     }
-    @GetMapping("/admin/users/id")
+    @GetMapping("/admin/users/{id}")
     public ResponseEntity<Optional<User>> getUser(@PathVariable Long id) {
 
         return Optional.of(service.getById(id))
@@ -37,7 +37,7 @@ class UserController {
 
     }
 
-    @PutMapping("/admin/user/id")
+    @PutMapping("/admin/user/{id}")
     public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable Long id) {
         user.setId(id);
         return Optional.of(service.update(user))
@@ -45,7 +45,7 @@ class UserController {
                 .orElseGet(ResponseEntity.notFound():: build);
     }
 
-    @DeleteMapping("/admin/user/id")
+    @DeleteMapping("/admin/user/{id}")
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }
