@@ -1,7 +1,6 @@
 package com.mate.hackathon.aug2018.ecommerce.controller;
 
-import com.mate.hackathon.aug2018.ecommerce.model.User;
-import com.mate.hackathon.aug2018.ecommerce.repository.UserRepository;
+import com.mate.hackathon.aug2018.ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,45 +17,28 @@ import java.util.Optional;
 class UserController {
 
     @Autowired
-    private final  UserRepository repository;
-
-    UserController(UserRepository repository) {
-        this.repository = repository;
-    }
+    private UserService service;
 
     @GetMapping("/users")
-    List<User> all() {
-        return repository.findAll();
+    List<com.mate.hackathon.aug2018.ecommerce.model.User> getAll() {
+        return service.getAll();
     }
 
     @PostMapping("/users")
-    User addUser(@RequestBody User user) {
-        return repository.save(user);
+    com.mate.hackathon.aug2018.ecommerce.model.User addUser(@RequestBody com.mate.hackathon.aug2018.ecommerce.model.User user) {
+        return null;
     }
 
     @GetMapping("/users/{id}")
-    Optional<User> getUser(@PathVariable Long id) {
-        return repository.findById(id);
-
+    Optional<com.mate.hackathon.aug2018.ecommerce.model.User> getUser(@PathVariable Long id) {
+        return null;
     }
 
     @PutMapping("/user/{id}")
-    User updateUser(@RequestBody User user, @PathVariable Long id) {
-        return repository.findById(id)
-                .map(user1 -> {
-                    user1.setFirstName(user.getFirstName());
-                    user1.setLastName(user.getLastName());
-                    user1.setRoles(user.getRoles());
-                    return repository.save(user1);
-                })
-                .orElseGet(() -> {
-                    user.setId(id);
-                    return repository.save(user);
-                });
-    }
+
 
     @DeleteMapping("/user/{id}")
     void deleteEmployee(@PathVariable Long id) {
-        repository.deleteById(id);
     }
+
 }
