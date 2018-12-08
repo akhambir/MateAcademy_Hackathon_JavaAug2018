@@ -1,7 +1,7 @@
 package com.mate.hackathon.aug2018.ecommerce.service;
 
-import com.mate.hackathon.aug2018.ecommerce.repository.ProductDao;
 import com.mate.hackathon.aug2018.ecommerce.model.Product;
+import com.mate.hackathon.aug2018.ecommerce.repository.ProductDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +20,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Optional<Product> findByProductCode(Long productCode) {
+    public Optional<Product> findByProductCode(String productCode) {
         return productDao.findByProductCode(productCode);
     }
 
@@ -35,7 +35,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deleteByProductCode(Long productCode) {
+    public void deleteByProductCode(String productCode) {
         productDao.deleteByProductCode(productCode);
     }
 }
