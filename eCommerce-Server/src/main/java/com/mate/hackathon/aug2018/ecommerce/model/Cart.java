@@ -41,4 +41,8 @@ public class Cart {
     public void setAmount(Double amount) {
         this.amount = amount;
     }
+
+    public void addProduct(Product product, Integer quantity) {
+        products.put(product, quantity);
+    }
 }
