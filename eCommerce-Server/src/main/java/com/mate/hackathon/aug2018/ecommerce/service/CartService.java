@@ -12,9 +12,9 @@ public interface CartService {
 
     Cart save(Cart cart);
 
-    void increaseProductQuantity(Product product, User user);
+    Cart increaseProductQuantity(Product product, User user);
 
-    void decreaseProductQuantity(Product product, User user);
+    Cart decreaseProductQuantity(Product product, User user);
 
-    void deleteProduct(Product product, User user);
+    Cart deleteProduct(Product product, User user);
 }

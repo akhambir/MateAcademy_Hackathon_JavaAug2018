@@ -5,9 +5,11 @@ import com.mate.hackathon.aug2018.ecommerce.model.Product;
 import com.mate.hackathon.aug2018.ecommerce.model.User;
 import com.mate.hackathon.aug2018.ecommerce.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class CartServiceImpl implements CartService {
 
     @Autowired
@@ -24,7 +26,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void increaseProductQuantity(Product product, User user) {
+    public Cart increaseProductQuantity(Product product, User user) {
         Optional<Cart> cartFromDB = cartRepository.findByUser_Id(user.getId());
         Cart cart;
         Integer defaultProductQuantity = 1;
@@ -37,26 +39,31 @@ public class CartServiceImpl implements CartService {
             cart.increaseQuantity(product, defaultProductQuantity);
         }
         cartRepository.save(cart);
+        return cart;
     }
 
     @Override
-    public void decreaseProductQuantity(Product product, User user) {
+    public Cart decreaseProductQuantity(Product product, User user) {
         Optional<Cart> cartFromDB = cartRepository.findByUser_Id(user.getId());
+        Cart cart = null;
         if (cartFromDB.isPresent()) {
-            Cart cart = cartFromDB.get();
+            cart = cartFromDB.get();
             Integer defaultProductQuantity = 1;
             cart.decreaseQuantity(product, defaultProductQuantity);
             cartRepository.save(cart);
         }
+        return cart;
     }
 
     @Override
-    public void deleteProduct(Product product, User user) {
+    public Cart deleteProduct(Product product, User user) {
         Optional<Cart> optionalCart = cartRepository.findByUser_Id(user.getId());
+        Cart cart = null;
         if (optionalCart.isPresent()) {
-            Cart cartFromDB = optionalCart.get();
-            cartFromDB.deleteProduct(product);
-            cartRepository.save(cartFromDB);
+            cart = optionalCart.get();
+            cart.deleteProduct(product);
+            cartRepository.save(cart);
         }
+        return cart;
     }
 }
