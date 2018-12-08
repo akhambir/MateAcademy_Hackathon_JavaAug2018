@@ -1,5 +1,7 @@
 package com.mate.hackathon.aug2018.ecommerce.model;
 
+import com.mate.hackathon.aug2018.ecommerce.controller.model.dto.ProductDto;
+
 public class Product {
 
     private Long id;
@@ -7,6 +9,15 @@ public class Product {
     private String description;
     private double price;
     private Category category;
+
+    public static Product of(ProductDto productDto) {
+        Product product = new Product();
+        product.setName(productDto.getName());
+        product.setPrice(productDto.getPrice());
+        product.setDescription(productDto.getDescription());
+        product.setCategory(productDto.getCategory());
+        return product;
+    }
 
     public Long getId() {
         return id;
