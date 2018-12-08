@@ -1,5 +1,7 @@
 package com.mate.hackathon.aug2018.ecommerce.model;
 
+import com.mate.hackathon.aug2018.ecommerce.controller.model.dto.CategoryDto;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,11 +15,6 @@ public class Category {
     private String name;
     @Column(name = "DESCRIPTION")
     private String description;
-
-    public Category(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
 
     public Long getId() {
         return id;
@@ -41,5 +38,12 @@ public class Category {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public static Category of(CategoryDto categoryDto) {
+        Category category = new Category();
+        category.setName(categoryDto.getName());
+        category.setDescription(categoryDto.getDescription());
+        return category;
     }
 }
