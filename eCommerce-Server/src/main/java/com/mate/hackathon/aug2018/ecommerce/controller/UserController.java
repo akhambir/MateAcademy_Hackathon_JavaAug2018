@@ -1,7 +1,9 @@
 package com.mate.hackathon.aug2018.ecommerce.controller;
 
 import com.mate.hackathon.aug2018.ecommerce.model.User;
-import com.mate.hackathon.aug2018.ecommerce.repository.UserRepository;
+import com.mate.hackathon.aug2018.ecommerce.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,45 +18,36 @@ import java.util.Optional;
 @RestController
 class UserController {
 
-    private final UserRepository repository;
+    @Autowired
+    private UserService service;
 
-    UserController(UserRepository repository) {
-        this.repository = repository;
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/admin/users")
+    List<User> getAll() {
+        return service.getAll();
     }
 
-    @GetMapping("/users")
-    List<User> all() {
-        return repository.findAll();
-    }
-
-    @PostMapping("/users")
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/admin/users")
     User addUser(@RequestBody User user) {
-        return repository.save(user);
+        return service.create(user);
     }
 
-    @GetMapping("/users/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/admin/users/{id}")
     Optional<User> getUser(@PathVariable Long id) {
-        return repository.findById(id);
-
+        return service.getById(id);
     }
 
-    @PutMapping("/user/{id}")
-    User updateUser(@RequestBody User user, @PathVariable Long id) {
-        return repository.findById(id)
-                .map(user1 -> {
-                    user1.setFirstName(user.getFirstName());
-                    user1.setLastName(user.getLastName());
-                    user1.setRoles(user.getRoles());
-                    return repository.save(user1);
-                })
-                .orElseGet(() -> {
-                    user.setId(id);
-                    return repository.save(user);
-                });
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PutMapping("/admin/user/{id}")
+    public User updateUser(@RequestBody User user, @PathVariable Long id) {
+        return service.update(user, id);
     }
 
-    @DeleteMapping("/user/{id}")
-    void deleteEmployee(@PathVariable Long id) {
-        repository.deleteById(id);
+    @DeleteMapping("/admin/user/{id}")
+    void delete(@PathVariable Long id) {
+        service.delete(id);
     }
+
 }
