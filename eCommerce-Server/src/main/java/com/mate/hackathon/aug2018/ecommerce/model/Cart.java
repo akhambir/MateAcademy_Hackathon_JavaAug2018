@@ -63,4 +63,8 @@ public class Cart {
     public void deleteProduct(Product product) {
         products.remove(product);
     }
+
+    public void addProduct(Product product) {
+        products.add(product);
+    }
 }
