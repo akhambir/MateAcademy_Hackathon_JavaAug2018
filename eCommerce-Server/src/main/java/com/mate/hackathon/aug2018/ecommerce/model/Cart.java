@@ -1,13 +1,20 @@
 package com.mate.hackathon.aug2018.ecommerce.model;
 
+import javax.persistence.*;
 import java.util.HashMap;
 import java.util.Map;
 
+@Entity
+@Table(name = "CARTS")
 public class Cart {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "FK_CUSTOMER_ID")
     private User user;
     private Map<Product, Integer> products = new HashMap<>();
+    @Column(name = "AMOUNT")
     private Double amount;
 
     public Long getId() {
@@ -51,7 +58,7 @@ public class Cart {
             Integer previousQuantity = products.get(product);
             quantity += previousQuantity;
         }
-            products.put(product, quantity);
+        products.put(product, quantity);
     }
 
     public void decreaseQuantity(Product product, Integer quantity) {
