@@ -2,7 +2,6 @@ package com.mate.hackathon.aug2018.ecommerce.controller.model.dto;
 
 import com.mate.hackathon.aug2018.ecommerce.model.Category;
 import com.mate.hackathon.aug2018.ecommerce.model.Product;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.stream.Collectors;
