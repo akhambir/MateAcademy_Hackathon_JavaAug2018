@@ -4,14 +4,14 @@ import com.mate.hackathon.aug2018.ecommerce.model.Cart;
 import com.mate.hackathon.aug2018.ecommerce.model.Product;
 import com.mate.hackathon.aug2018.ecommerce.model.User;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CartDto {
 
     private User user;
-    private Map<Product, Integer> products = new HashMap<>();
     private Double amount;
+    private List<Product> products = new ArrayList<>();
 
     public static CartDto of(Cart cart) {
         CartDto cartDto = new CartDto();
@@ -29,11 +29,11 @@ public class CartDto {
         this.user = user;
     }
 
-    public Map<Product, Integer> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(Map<Product, Integer> products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 

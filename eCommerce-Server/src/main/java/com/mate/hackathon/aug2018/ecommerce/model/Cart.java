@@ -3,8 +3,8 @@ package com.mate.hackathon.aug2018.ecommerce.model;
 import com.mate.hackathon.aug2018.ecommerce.controller.model.dto.CartDto;
 
 import javax.persistence.*;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "CARTS")
@@ -12,10 +12,11 @@ public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @OneToMany(mappedBy = "products", fetch = FetchType.LAZY)
     private Long id;
     @Column(name = "FK_CUSTOMER_ID")
     private User user;
-    private Map<Product, Integer> products = new HashMap<>();
+    private List<Product> products = new ArrayList<>();
     @Column(name = "AMOUNT")
     private Double amount;
 
@@ -43,11 +44,11 @@ public class Cart {
         this.user = user;
     }
 
-    public Map<Product, Integer> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(Map<Product, Integer> products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 
@@ -61,9 +62,5 @@ public class Cart {
 
     public void deleteProduct(Product product) {
         products.remove(product);
-    }
-
-    public void setProductQuantity(Product product, Integer quantity) {
-        products.put(product, quantity);
     }
 }
