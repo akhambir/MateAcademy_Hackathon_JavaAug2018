@@ -26,32 +26,24 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public Cart increaseProductQuantity(Product product, User user) {
-        Optional<Cart> cartFromDB = cartRepository.findByUser_Id(user.getId());
-        Cart cart;
+    public Cart addProduct(Product product, User user) {
         Integer defaultProductQuantity = 1;
-        if (cartFromDB.isPresent()) {
-            cart = cartFromDB.get();
-            cart.increaseQuantity(product, defaultProductQuantity);
-        } else {
-            cart = new Cart();
-            cart.setUser(user);
-            cart.increaseQuantity(product, defaultProductQuantity);
-        }
-        cartRepository.save(cart);
-        return cart;
+        return setProductQuantity(product, user, defaultProductQuantity);
     }
 
     @Override
-    public Cart decreaseProductQuantity(Product product, User user) {
+    public Cart setProductQuantity(Product product, User user, Integer quantity) {
         Optional<Cart> cartFromDB = cartRepository.findByUser_Id(user.getId());
-        Cart cart = null;
+        Cart cart;
         if (cartFromDB.isPresent()) {
             cart = cartFromDB.get();
-            Integer defaultProductQuantity = 1;
-            cart.decreaseQuantity(product, defaultProductQuantity);
-            cartRepository.save(cart);
+            cart.setProductQuantity(product, quantity);
+        } else {
+            cart = new Cart();
+            cart.setUser(user);
+            cart.setProductQuantity(product, quantity);
         }
+        cartRepository.save(cart);
         return cart;
     }
 
