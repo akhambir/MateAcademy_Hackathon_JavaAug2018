@@ -21,8 +21,18 @@ export class UserService {
     return this.http.post<User>(
       'http://localhost:8080/login', user, {observe: 'response'}).pipe(
         map(resp => {
-
+          localStorage.setItem('email', {user: user.email});
         })
     )
   }*/
+<<<<<<< HEAD
+
+  public pollUser(): Observable<User> {
+    let user: User = new User();
+    user.email = JSON.parse(localStorage.getItem('email')).user;
+
+    return this.http.post<User>('http://localhost:8080/user/by-email', user);
+  }
+=======
+>>>>>>> a4372681336cf2e40fd2fcd318a26e58f62ac180
 }
