@@ -9,7 +9,7 @@ import {ProductService} from "../../service/product.service";
 })
 export class ProductComponent implements OnInit {
 
-  private product: Product = new Product();
+  product: Product = new Product();
 
   constructor(private productService: ProductService) { }
 
