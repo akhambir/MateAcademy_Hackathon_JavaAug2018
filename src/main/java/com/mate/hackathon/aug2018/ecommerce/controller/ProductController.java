@@ -25,4 +25,11 @@ public class ProductController {
                 .orElseGet(ResponseEntity.notFound()::build);
     }
 
+    @GetMapping("/{productCode}")
+    public ResponseEntity<ProductDto> getProductById(@PathVariable Long productCode) {
+        return productService.findByProductCode(productCode)
+                .map(ProductDto::of)
+                .map(ResponseEntity::ok)
+                .orElseGet(ResponseEntity.notFound()::build);
+    }
 }
