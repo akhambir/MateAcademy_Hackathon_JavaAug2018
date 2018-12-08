@@ -1,11 +1,13 @@
 package com.mate.hackathon.aug2018.ecommerce.controller;
 
 import com.mate.hackathon.aug2018.ecommerce.controller.model.dto.ProductDto;
+import com.mate.hackathon.aug2018.ecommerce.model.Product;
 import com.mate.hackathon.aug2018.ecommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -32,4 +34,15 @@ public class ProductController {
                 .map(ResponseEntity::ok)
                 .orElseGet(ResponseEntity.notFound()::build);
     }
+
+    @PostMapping("/admin/products/save")
+    public ResponseEntity<List<ProductDto>> saveProduct(ProductDto productDto) {
+        productService.save(Product.of(productDto));
+        return getAllProducts();
+    }
+
+    //TODO: GET edit page
+    //TODO: GET create product
+    //TODO: POST save product
+    //TODO: GET delete product
 }
