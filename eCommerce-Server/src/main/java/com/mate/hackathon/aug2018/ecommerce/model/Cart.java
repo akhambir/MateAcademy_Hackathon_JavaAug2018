@@ -6,7 +6,7 @@ import java.util.Map;
 public class Cart {
 
     private Long id;
-    private User customer;
+    private User user;
     private Map<Product, Integer> products = new HashMap<>();
     private Double amount;
 
@@ -18,12 +18,12 @@ public class Cart {
         this.id = id;
     }
 
-    public User getCustomer() {
-        return customer;
+    public User getUser() {
+        return user;
     }
 
-    public void setCustomer(User customer) {
-        this.customer = customer;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Map<Product, Integer> getProducts() {
