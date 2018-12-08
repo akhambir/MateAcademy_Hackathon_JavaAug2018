@@ -63,18 +63,7 @@ public class Cart {
         products.remove(product);
     }
 
-    public void increaseQuantity(Product product, Integer quantity) {
-        if (products.containsKey(product)) {
-            Integer previousQuantity = products.get(product);
-            quantity += previousQuantity;
-        }
+    public void setProductQuantity(Product product, Integer quantity) {
         products.put(product, quantity);
-    }
-
-    public void decreaseQuantity(Product product, Integer quantity) {
-        Integer previousQuantity = products.get(product);
-        if (previousQuantity > 1) {
-            products.put(product, previousQuantity - quantity);
-        }
     }
 }
