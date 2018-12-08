@@ -1,5 +1,7 @@
 package com.mate.hackathon.aug2018.ecommerce.model;
 
+import com.mate.hackathon.aug2018.ecommerce.controller.model.dto.CartDto;
+
 import javax.persistence.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +18,14 @@ public class Cart {
     private Map<Product, Integer> products = new HashMap<>();
     @Column(name = "AMOUNT")
     private Double amount;
+
+    public static Cart of(CartDto cartDto) {
+        Cart cart = new Cart();
+        cart.setUser(cartDto.getUser());
+        cart.setProducts(cartDto.getProducts());
+        cart.setAmount(cartDto.getAmount());
+        return cart;
+    }
 
     public Long getId() {
         return id;
