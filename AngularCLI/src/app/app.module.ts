@@ -7,7 +7,14 @@ import { LoginComponent } from './login/login.component';
 import {RouterModule, Routes} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
+
+import {CategoryComponent} from "./component/category/category.component";
+import {CategoriesComponent} from "./component/categories/categories.component";
+import {ProductComponent} from "./component/product/product.component";
+import {ProductsComponent} from "./component/products/products.component";
+
 import { RegisterComponent } from './register/register.component';
+
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -18,6 +25,10 @@ const appRoutes: Routes = [
     AppComponent,
     HeaderComponent,
     LoginComponent,
+    CategoryComponent,
+    CategoriesComponent,
+    ProductComponent,
+    ProductsComponent,
     RegisterComponent
   ],
   imports: [
