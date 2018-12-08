@@ -33,7 +33,6 @@ const appRoutes: Routes = [
     CategoryComponent,
     CategoriesComponent,
     ProductComponent,
-    ProductsComponent,
     RegisterComponent
   ],
   imports: [
