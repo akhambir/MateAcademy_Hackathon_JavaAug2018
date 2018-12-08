@@ -20,7 +20,6 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/admin/products")
     public ResponseEntity<List<ProductDto>> getAllProducts() {
         return Optional.of(productService.findAll())
@@ -29,7 +28,6 @@ public class ProductController {
                 .orElseGet(ResponseEntity.notFound()::build);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/{productCode}")
     public ResponseEntity<ProductDto> getProductByProductCode(@PathVariable String productCode) {
         return productService.findByProductCode(productCode)
@@ -38,14 +36,12 @@ public class ProductController {
                 .orElseGet(ResponseEntity.notFound()::build);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/admin/products/save")
     public ResponseEntity<List<ProductDto>> saveProduct(ProductDto productDto) {
         productService.save(Product.of(productDto));
         return getAllProducts();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/admin/products/{productCode}")
     public ResponseEntity<ProductDto> showEditPage(@PathVariable String productCode) {
         return productService.findByProductCode(productCode)
@@ -60,7 +56,6 @@ public class ProductController {
         return ResponseEntity.ok(ProductDto.empty());
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/admin/products/delete_{productCode}")
     public ResponseEntity<List<ProductDto>> deleteByProductCode(@PathVariable String productCode) {
         productService.deleteByProductCode(productCode);

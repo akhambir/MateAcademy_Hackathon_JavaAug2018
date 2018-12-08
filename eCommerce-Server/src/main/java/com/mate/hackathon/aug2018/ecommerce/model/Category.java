@@ -45,6 +45,7 @@ public class Category {
         this.description = description;
     }
 
+
     public List<Product> getProducts() {
         return products;
     }
