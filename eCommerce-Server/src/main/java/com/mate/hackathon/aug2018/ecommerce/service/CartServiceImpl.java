@@ -26,12 +26,6 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public Cart addProduct(Product product, User user) {
-        Integer defaultProductQuantity = 1;
-        return setProductQuantity(product, user, defaultProductQuantity);
-    }
-
-    @Override
     public Cart setProductQuantity(Product product, User user, Integer quantity) {
         Optional<Cart> cartFromDB = cartRepository.findByUser_Id(user.getId());
         Cart cart;

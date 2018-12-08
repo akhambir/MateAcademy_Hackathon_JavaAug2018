@@ -12,8 +12,6 @@ public interface CartService {
 
     Cart save(Cart cart);
 
-    Cart addProduct(Product product, User user);
-
     Cart setProductQuantity(Product product, User user, Integer quantity);
 
     Cart deleteProduct(Product product, User user);
