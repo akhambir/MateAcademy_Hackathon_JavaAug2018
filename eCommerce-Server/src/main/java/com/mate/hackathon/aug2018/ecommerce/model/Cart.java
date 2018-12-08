@@ -56,6 +56,8 @@ public class Cart {
 
     public void decreaseQuantity(Product product, Integer quantity) {
         Integer previousQuantity = products.get(product);
-        products.put(product, previousQuantity - quantity);
+        if (previousQuantity > 1) {
+            products.put(product, previousQuantity - quantity);
+        }
     }
 }
