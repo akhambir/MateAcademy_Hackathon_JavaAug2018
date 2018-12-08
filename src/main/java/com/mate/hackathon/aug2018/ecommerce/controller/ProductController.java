@@ -54,5 +54,9 @@ public class ProductController {
         return ResponseEntity.ok(ProductDto.empty());
     }
 
-
+    @GetMapping("/admin/products/delete_{productCode}")
+    public ResponseEntity<List<ProductDto>> deleteByProductCode(@PathVariable Long productCode) {
+        productService.deleteByProductCode(productCode);
+        return getAllProducts();
+    }
 }
