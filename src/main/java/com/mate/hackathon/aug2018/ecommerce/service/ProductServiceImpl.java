@@ -1,6 +1,6 @@
 package com.mate.hackathon.aug2018.ecommerce.service;
 
-import com.mate.hackathon.aug2018.ecommerce.dao.ProductDao;
+import com.mate.hackathon.aug2018.ecommerce.repository.ProductDao;
 import com.mate.hackathon.aug2018.ecommerce.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
