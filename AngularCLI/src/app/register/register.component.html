@@ -31,12 +31,12 @@
               <div class="form-group row">
                 <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
                 <div class="col-md-6">
-                  <input type="text" id="password" class="form-control" [(ngModel)]="user.password">
+                  <input type="password" id="password" class="form-control" [(ngModel)]="user.password">
                 </div>
               </div>
 
               <div class="col-md-6 offset-md-4">
-                <button (click)="registerUser()" type="submit" class="btn btn-primary">
+                <button (click)="registerUser()" [routerLink]="['/login']" type="submit" class="btn btn-primary">
                   Register
                 </button>
               </div>
