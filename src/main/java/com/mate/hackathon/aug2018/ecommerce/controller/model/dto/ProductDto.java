@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 public class ProductDto {
 
+    private Long productCode;
     private String name;
     private String description;
     private double price;
@@ -15,6 +16,7 @@ public class ProductDto {
 
     public static ProductDto of(Product product) {
         ProductDto productDto = new ProductDto();
+        productDto.setProductCode(product.getProductCode());
         productDto.setName(product.getName());
         productDto.setPrice(product.getPrice());
         productDto.setDescription(product.getDescription());
@@ -58,5 +60,13 @@ public class ProductDto {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public Long getProductCode() {
+        return productCode;
+    }
+
+    public void setProductCode(Long productCode) {
+        this.productCode = productCode;
     }
 }
