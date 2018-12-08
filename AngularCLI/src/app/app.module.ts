@@ -28,16 +28,13 @@ const appRoutes: Routes = [
     AppComponent,
     HeaderComponent,
     LoginComponent,
-<<<<<<< HEAD
     RegisterComponent,
-    PersonalAreaComponent
-=======
+    PersonalAreaComponent,
     CategoryComponent,
     CategoriesComponent,
     ProductComponent,
     ProductsComponent,
     RegisterComponent
->>>>>>> a4372681336cf2e40fd2fcd318a26e58f62ac180
   ],
   imports: [
     RouterModule.forRoot(appRoutes,
