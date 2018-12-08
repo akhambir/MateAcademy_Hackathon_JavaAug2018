@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface ProductDao extends JpaRepository<Product, Long> {
 
-    public Optional<Product> findByProductCode(Long productCode);
+    Optional<Product> findByProductCode(Long productCode);
 }
