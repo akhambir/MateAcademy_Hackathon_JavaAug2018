@@ -1,6 +1,14 @@
 package com.mate.hackathon.aug2018.ecommerce.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,13 +18,22 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "ROLE_NAME")
-    private String roleName;
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "USERS_TO_ROLES",
-            joinColumns = {@JoinColumn(name = "FK_ROLE_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "FK_USER_ID")})
+    @Column(name = "NAME")
+    private String name;
+    @ManyToMany()
+    @JoinTable(
+            name = "USERS_TO_ROLES",
+            joinColumns = { @JoinColumn(name = "FK_ROLE_ID") },
+            inverseJoinColumns = { @JoinColumn(name = "FK_USER_ID") }
+            )
     private Set<User> users = new HashSet<>();
+
+    public Role() {
+    }
+
+    public Role(String roleName) {
+        this.name = roleName;
+    }
 
     public Long getId() {
         return id;
@@ -26,12 +43,12 @@ public class Role {
         this.id = id;
     }
 
-    public String getRoleName() {
-        return roleName;
+    public String getName() {
+        return name;
     }
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Set<User> getUsers() {
@@ -40,5 +57,20 @@ public class Role {
 
     public void setUsers(Set<User> users) {
         this.users = users;
+    }
+
+    public static Role of(RoleName roleName) {
+        return new Role(roleName.name());
+    }
+
+    public enum RoleName {
+        ADMIN(1L),
+        USER(2L);
+
+        public final Long roleId;
+
+        RoleName(Long rileId) {
+            this.roleId = rileId;
+        }
     }
 }

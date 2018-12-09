@@ -22,7 +22,6 @@ class UserController {
     @Autowired
     private UserService service;
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/admin/users")
     public ResponseEntity<List<User>> getAll() {
         return Optional.of(service.getAll())
@@ -30,7 +29,6 @@ class UserController {
                 .orElseGet(ResponseEntity.notFound()::build);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/users")
     public ResponseEntity<User> addUser(@RequestBody User user) {
         return Optional.of(service.create(user))
@@ -38,7 +36,6 @@ class UserController {
                 .orElseGet(ResponseEntity.notFound()::build);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/admin/users/{id}")
     public ResponseEntity<Optional<User>> getUser(@PathVariable Long id) {
 
@@ -48,8 +45,7 @@ class UserController {
 
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
-    @PutMapping("/admin/user/{id}")
+    @PutMapping("/admin/users/{id}")
     public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable Long id) {
         user.setId(id);
         return Optional.of(service.update(user))
@@ -57,7 +53,7 @@ class UserController {
                 .orElseGet(ResponseEntity.notFound():: build);
     }
 
-    @DeleteMapping("/admin/user/{id}")
+    @DeleteMapping("/admin/users/{id}")
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }
