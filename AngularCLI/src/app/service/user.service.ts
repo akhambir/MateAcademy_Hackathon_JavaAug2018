@@ -17,6 +17,12 @@ export class UserService {
     );
   }
 
+  public updateUser(user: User): Observable<User> {
+    return this.http.put<User>(
+      'http://localhost:8080/users', user
+    );
+  }
+
   public login(user: User): Observable<boolean> {
     return this.http.post<User>(
       'http://localhost:8080/login', user, {observe: 'response'}).pipe(

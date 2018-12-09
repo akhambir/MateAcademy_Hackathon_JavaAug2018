@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
         user.addRole(role);
         user.setToken(getToken());
         user.setPassword(encoder.encode(user.getPassword()));
-//        role.getUsers().add(user);
+        role.addUser(user);
 
         return repository.save(user);
     }
@@ -51,6 +51,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> getById(Long id) {
         return repository.findById(id);
+    }
+
+    @Override
+    public Optional<User> getByEmail(String email) {
+        return repository.findByEmail(email);
     }
 
     @Override

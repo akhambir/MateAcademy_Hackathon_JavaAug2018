@@ -1,5 +1,6 @@
 package com.mate.hackathon.aug2018.ecommerce.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,16 +17,10 @@ import java.util.Set;
 @Table(name = "ROLES")
 public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "NAME")
     private String name;
-    @ManyToMany()
-    @JoinTable(
-            name = "USERS_TO_ROLES",
-            joinColumns = { @JoinColumn(name = "FK_ROLE_ID") },
-            inverseJoinColumns = { @JoinColumn(name = "FK_USER_ID") }
-            )
+    @ManyToMany(mappedBy = "roles")
     private Set<User> users = new HashSet<>();
 
     public Role() {
@@ -61,6 +56,10 @@ public class Role {
 
     public static Role of(RoleName roleName) {
         return new Role(roleName.name());
+    }
+
+    public void addUser(User user) {
+        this.users.add(user);
     }
 
     public enum RoleName {
