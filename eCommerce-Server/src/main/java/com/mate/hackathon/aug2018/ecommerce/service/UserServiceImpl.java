@@ -1,6 +1,5 @@
 package com.mate.hackathon.aug2018.ecommerce.service;
 
-import com.mate.hackathon.aug2018.ecommerce.model.Role;
 import com.mate.hackathon.aug2018.ecommerce.model.User;
 import com.mate.hackathon.aug2018.ecommerce.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,15 +23,6 @@ public class UserServiceImpl implements UserService {
     private UserRepository repository;
 
     public User create(User user) {
-        Role.RoleName userRole = Role.RoleName.USER;
-        Role role = Role.of(userRole);
-        role.setId(userRole.roleId);
-
-        user.addRole(role);
-        user.setToken(getToken());
-        user.setPassword(encoder.encode(user.getPassword()));
-//        role.getUsers().add(user);
-
         return repository.save(user);
     }
 
@@ -51,6 +41,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> getById(Long id) {
         return repository.findById(id);
+    }
+
+    @Override
+    public User getByEmail(String email) {
+        return (User) loadUserByUsername(email);
     }
 
     @Override
