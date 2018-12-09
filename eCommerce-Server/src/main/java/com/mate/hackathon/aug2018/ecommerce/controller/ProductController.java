@@ -1,25 +1,26 @@
 package com.mate.hackathon.aug2018.ecommerce.controller;
 
+import com.mate.hackathon.aug2018.ecommerce.controller.model.dto.CategoryDto;
 import com.mate.hackathon.aug2018.ecommerce.controller.model.dto.ProductDto;
 import com.mate.hackathon.aug2018.ecommerce.model.Product;
+import com.mate.hackathon.aug2018.ecommerce.service.CategoryService;
 import com.mate.hackathon.aug2018.ecommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class ProductController {
 
     @Autowired
     private ProductService productService;
+    @Autowired
+    private CategoryService categoryService;
 
-    @GetMapping("/admin/products")
-    public ResponseEntity<List<ProductDto>> getAllProducts() {
-        return Optional.of(productService.findAll())
-                .map(ProductDto::of)
+    @GetMapping("/admin/products/{categoryName}")
+    public ResponseEntity<CategoryDto> getAllProductsByCategory(@PathVariable String categoryName) {
+        return categoryService.findByNameAndListProducts(categoryName)
+                .map(CategoryDto::of)
                 .map(ResponseEntity::ok)
                 .orElseGet(ResponseEntity.notFound()::build);
     }
@@ -33,21 +34,21 @@ public class ProductController {
     }
 
     @PostMapping("/admin/products")
-    public ResponseEntity<List<ProductDto>> saveProduct(@RequestBody ProductDto productDto) {
+    public ResponseEntity<CategoryDto> saveProduct(@RequestBody ProductDto productDto) {
         productService.save(Product.of(productDto));
-        return getAllProducts();
+        return getAllProductsByCategory(productDto.getCategoryName());
     }
 
     @PutMapping("/admin/products/{productCode}")
-    public ResponseEntity<List<ProductDto>> updateProduct(@RequestBody ProductDto productDto, @PathVariable String productCode) {
+    public ResponseEntity<CategoryDto> updateProduct(@RequestBody ProductDto productDto, @PathVariable String productCode) {
         productDto.setProductCode(productCode);
         productService.save(Product.of(productDto));
-        return getAllProducts();
+        return getAllProductsByCategory(productDto.getCategoryName());
     }
 
     @DeleteMapping("/admin/products/{productCode}")
-    public ResponseEntity<List<ProductDto>> deleteByProductCode(@PathVariable String productCode) {
+    public ResponseEntity<CategoryDto> deleteByProductCode(@PathVariable String productCode, String categoryName) {
         productService.deleteByProductCode(productCode);
-        return getAllProducts();
+        return getAllProductsByCategory(categoryName);
     }
 }
