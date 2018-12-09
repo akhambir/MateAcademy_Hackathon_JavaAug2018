@@ -29,6 +29,7 @@ class UserController {
                 .orElseGet(ResponseEntity.notFound()::build);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/users")
     public ResponseEntity<User> addUser(@RequestBody User user) {
         return Optional.of(service.create(user))
@@ -45,10 +46,13 @@ class UserController {
 
     }
 
-    @PutMapping("/admin/users/{id}")
-    public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable Long id) {
-        user.setId(id);
-        return Optional.of(service.update(user))
+    @PutMapping("/users")
+    public ResponseEntity<User> updateUser(@RequestBody User user) {
+        return service.getByEmail(user.getEmail())
+                .map(u -> { user.setId(u.getId()); return u; })
+                .map(u -> { user.setToken(u.getToken()); return u; })
+                .map(u -> { user.setPassword(u.getPassword()); return user; })
+                .map(service::update)
                 .map(ResponseEntity::ok)
                 .orElseGet(ResponseEntity.notFound():: build);
     }

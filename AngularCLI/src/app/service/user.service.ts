@@ -17,6 +17,12 @@ export class UserService {
     );
   }
 
+  public updateUser(user: User): Observable<User> {
+    return this.http.put<User>(
+      'http://localhost:8080/users', user
+    );
+  }
+
   public login(user: User): Observable<boolean> {
     let form: FormData = new FormData();
     form.append('username', user.email);
