@@ -10,8 +10,7 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
 
-  user: User = new User;
-  massage: String = '';
+  user: User = new User();
 
   constructor(private userService: UserService, private router: Router) { }
 
@@ -24,7 +23,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/categories']);
       },
       err => {
-        this.massage = 'Incorrect email or password';
+        console.log(err);
       }
     );
   }
