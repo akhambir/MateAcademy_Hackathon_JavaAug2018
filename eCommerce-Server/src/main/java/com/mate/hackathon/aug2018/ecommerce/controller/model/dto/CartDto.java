@@ -48,8 +48,4 @@ public class CartDto {
     public void setProducts(Map<ProductDto, Integer> products) {
         this.products = products;
     }
-
-    public void addProductAndQuantity(ProductDto productDto, Integer quantity) {
-        products.put(productDto, quantity);
-    }
 }
