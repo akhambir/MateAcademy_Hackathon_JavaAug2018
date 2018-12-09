@@ -1,7 +1,7 @@
 package com.mate.hackathon.aug2018.ecommerce.controller.model.dto;
 
 import com.mate.hackathon.aug2018.ecommerce.model.Cart;
-import com.mate.hackathon.aug2018.ecommerce.model.Product;
+import com.mate.hackathon.aug2018.ecommerce.model.CartDetails;
 import com.mate.hackathon.aug2018.ecommerce.model.User;
 
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ public class CartDto {
 
     private User user;
     private Double amount;
-    private List<Product> products = new ArrayList<>();
+    private List<CartDetails> products = new ArrayList<>();
 
     public static CartDto of(Cart cart) {
         CartDto cartDto = new CartDto();
@@ -29,11 +29,11 @@ public class CartDto {
         this.user = user;
     }
 
-    public List<Product> getProducts() {
+    public List<CartDetails> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(List<CartDetails> products) {
         this.products = products;
     }
 

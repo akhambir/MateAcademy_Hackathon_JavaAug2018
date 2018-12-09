@@ -12,18 +12,13 @@ public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "CartDetailsId.fkCartId")
     private Long id;
-//    @Column(name = "FK_CUSTOMER_ID")
     @OneToOne(fetch = FetchType.LAZY)
-    @MapsId
+    @MapsId("FK_CUSTOMER_ID")
     private User user;
-    @JoinTable(
-            name = "CARTS_DETAILS",
-            joinColumns = {@JoinColumn(name = "FK_CART_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "FK_PRODUCT_ID")}
-    )
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<Product> products = new ArrayList<>();
+
+    private List<CartDetails> products = new ArrayList<>();
     @Column(name = "AMOUNT")
     private Double amount;
 
@@ -51,14 +46,6 @@ public class Cart {
         this.user = user;
     }
 
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
-
     public Double getAmount() {
         return amount;
     }
@@ -67,11 +54,15 @@ public class Cart {
         this.amount = amount;
     }
 
-    public void deleteProduct(Product product) {
-        products.remove(product);
+    public List<CartDetails> getProducts() {
+        return products;
     }
 
-    public void addProduct(Product product) {
-        products.add(product);
+    public void setProducts(List<CartDetails> products) {
+        this.products = products;
     }
+
+
+    //TODO: add product
+    //TODO: remove product
 }
