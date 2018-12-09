@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "USERS" )
+@Table(name = "USERS")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,6 +14,7 @@ public class User {
     private String firstName;
     @Column(name = "LAST_NAME")
     private String lastName;
+
     @Column(name = "EMAIL")
     private String email;
     @Column(name = "PASSWORD")
@@ -23,13 +24,6 @@ public class User {
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
     private Set<Role> roles = new HashSet<>();
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
 
     public User() {
     }
@@ -41,6 +35,7 @@ public class User {
         this.password = password;
         this.token = token;
     }
+
 
     public Long getId() {
         return id;
@@ -87,7 +82,16 @@ public class User {
     }
 
     public void setToken(String token) {
+
         this.token = token;
     }
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
 
 }
