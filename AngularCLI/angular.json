@@ -23,7 +23,11 @@
               "src/assets"
             ],
             "styles": [
+<<<<<<< HEAD
               "../node_modules/bootstrap/dist/css/bootstrap.css",
+=======
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+>>>>>>> 17fced9b0c218974462f93b07c9d56a501087950
               "src/styles.css"
             ],
             "scripts": [
@@ -76,7 +80,11 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
+<<<<<<< HEAD
               "../node_modules/bootstrap/dist/css/bootstrap.css",
+=======
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+>>>>>>> 17fced9b0c218974462f93b07c9d56a501087950
               "src/styles.css"
             ],
             "scripts": [

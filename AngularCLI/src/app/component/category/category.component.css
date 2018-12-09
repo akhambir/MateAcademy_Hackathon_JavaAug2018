@@ -1,58 +1,34 @@
-.products{
-  width:400px;
-  margin:0 auto;
-}
-
-.products ul{
-  counter-reset: li;
-  list-style: none;
-  font-size: 15px;
-  font-family: 'Raleway', sans-serif;
+.single {
+  padding: 30px 15px;
+  margin-top: 40px;
+  background: #fcfcfc;
+  border: 1px solid #f0f0f0; }
+.single h3.side-title {
+  margin: 0;
+  margin-bottom: 10px;
   padding: 0;
-  margin-bottom: 4em;
-}
-.products ol ol{
-  margin: 0 0 0 2em;
-}
-
-.products a{
-  position: relative;
+  font-size: 20px;
+  color: #333;
+  text-transform: uppercase; }
+.single h3.side-title:after {
+  content: '';
+  width: 60px;
+  height: 1px;
+  background: #ff173c;
   display: block;
-  padding: .4em .4em .4em 2em;
-  *padding: .4em;
-  margin: .5em 0;
-  background: #172489;
-  color: #cacaca;
-  text-decoration: none;
-  -moz-border-radius: .3em;
-  -webkit-border-radius: .3em;
-  border-radius: 10em;
-  transition: all .2s ease-in-out;
-}
+  margin-top: 6px; }
 
-.products a:hover{
-  background: #25262a;
-  text-decoration:none;
-  transform: scale(1.1);
-  cursor: pointer;
-}
-
-.products a:before{
-  content: counter(li);
-  counter-increment: li;
-  position: absolute;
-  left: -1.3em;
-  top: 50%;
-  margin-top: -1.3em;
-  background: #172489;
-  height: 2em;
-  width: 2em;
-  line-height: 2em;
-  border: .3em solid #d6d4d4;
-  text-align: center;
-  font-weight: bold;
-  -moz-border-radius: 2em;
-  -webkit-border-radius: 2em;
-  border-radius: 2em;
-  color: #172489;
-}
+.single ul {
+  margin-bottom: 0; }
+.single li a {
+  color: #666;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #f0f0f0;
+  line-height: 40px;
+  display: block;
+  text-decoration: none; }
+.single li a:hover {
+  color: #ff173c; }
+.single li:last-child a {
+  border-bottom: 0; }

@@ -1,5 +1,7 @@
 package com.mate.hackathon.aug2018.ecommerce.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,6 +19,13 @@ public class Role {
             joinColumns = {@JoinColumn(name = "FK_ROLE_ID")},
             inverseJoinColumns = {@JoinColumn(name = "FK_USER_ID")})
     private Set<User> users = new HashSet<>();
+
+    public Role() {
+    }
+
+    public Role(String roleName) {
+        this.roleName = roleName;
+    }
 
     public Long getId() {
         return id;
@@ -40,5 +49,20 @@ public class Role {
 
     public void setUsers(Set<User> users) {
         this.users = users;
+    }
+
+    public static Role of(RoleName  roleName) {
+        return new Role(roleName.name());
+    }
+
+    public enum RoleName {
+        ADMIN (1),
+        USER (2);
+
+        public final int roleId;
+
+        RoleName(int rileId) {
+            this.roleId = rileId;
+        }
     }
 }
