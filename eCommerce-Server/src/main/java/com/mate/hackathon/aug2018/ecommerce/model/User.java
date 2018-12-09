@@ -1,10 +1,7 @@
 package com.mate.hackathon.aug2018.ecommerce.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +26,7 @@ public class User {
     private String password;
     @Column(name = "TOKEN")
     private String token;
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
+    @ManyToMany(mappedBy = "users")
     private Set<Role> roles = new HashSet<>();
 
     public User() {
