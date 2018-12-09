@@ -8,7 +8,7 @@
     <label for="inputPassword" class="sr-only">Password</label>
     <input [(ngModel)]="user.password" name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
 
-    <button class="btn btn-lg btn-primary btn-block" (click)="login()" type="submit">Login</button>
+    <button class="btn btn-lg btn-primary btn-block" type="button" (click)="login()" >Login</button>
     <button class="btn btn-lg btn-primary btn-block" type="button" [routerLink]="['/registration']">Register</button>
 
     <p class="mt-5 mb-3 text-muted">&copy;DreamTeam corp.</p>
