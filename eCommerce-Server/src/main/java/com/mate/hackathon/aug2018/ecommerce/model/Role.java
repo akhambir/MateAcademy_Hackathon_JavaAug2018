@@ -1,16 +1,18 @@
 package com.mate.hackathon.aug2018.ecommerce.model;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
+/*@Entity
 @Table(name = "ROLES")
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "ROLE_NAME")
+    @Column(name = "NAME")
     private String roleName;
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "USERS_TO_ROLES",
@@ -51,16 +53,13 @@ public class Role {
 
     public static Role of(RoleName  roleName) {
         return new Role(roleName.name());
-    }
+    }*/
 
-    public enum RoleName {
-        ADMIN (1),
-        USER (2);
+public enum Role implements GrantedAuthority {
+    USER, ADMIN;
 
-        public final int roleId;
-
-        RoleName(int rileId) {
-            this.roleId = rileId;
-        }
+    @Override
+    public String getAuthority() {
+        return name();
     }
 }

@@ -1,23 +1,18 @@
 package com.mate.hackathon.aug2018.ecommerce.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-import java.util.HashSet;
+import javax.persistence.*;
+import java.util.Collection;
 import java.util.Set;
 
 @Entity
-@Table(name = "USERS" )
-public class User {
+@Table(name = "USERS")
+public class User implements UserDetails {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(name = "FIRST_NAME")
     private String firstName;
@@ -29,30 +24,22 @@ public class User {
     private String password;
     @Column(name = "TOKEN")
     private String token;
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
-    private Set<Role> roles = new HashSet<>();
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "USER_TO_ROLE", joinColumns = @JoinColumn(name = "ID"))
+    @Enumerated(EnumType.STRING)
+    private Set<Role> roles;
+
 
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, String password, String token) {
+    public User(String firstName, String lastName, String email, String password, String token, Set<Role> roles) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.token = token;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
         this.roles = roles;
-    }
-
-    public void addRole(Role role) {
-        this.roles.add(role);
     }
 
     public Long getId() {
@@ -87,10 +74,6 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public void setPassword(String password) {
         this.password = password;
     }
@@ -103,4 +86,46 @@ public class User {
         this.token = token;
     }
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return (getRoles());
+    }
+
+    @Override
+    public String getPassword() {
+        return null;
+    }
+
+    @Override
+    public String getUsername() {
+        return getFirstName();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }

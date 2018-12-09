@@ -1,20 +1,14 @@
 package com.mate.hackathon.aug2018.ecommerce.controller;
 
+import com.mate.hackathon.aug2018.ecommerce.model.Role;
 import com.mate.hackathon.aug2018.ecommerce.model.User;
 import com.mate.hackathon.aug2018.ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 class UserController {
@@ -30,10 +24,26 @@ class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<User> addUser(@RequestBody User user) {
-        return Optional.of(service.create(user))
-                .map(ResponseEntity::ok)
-                .orElseGet(ResponseEntity.notFound()::build);
+    public String addUser(
+            @RequestParam String email,
+            @RequestParam Map<String, String> form,
+            @RequestParam String password) {
+        User user = service.getByEmail(email);
+        if (user != null) {
+            return "redirect:/login";
+        }
+        Set<String> roles = Arrays.stream(Role.values())
+                .map(Role::name)
+                .collect(Collectors.toSet());
+        user.getRoles().clear();
+        for (String key : form.keySet()) {
+            if (roles.contains(key)) {
+                user.getRoles().add(Role.valueOf(key));
+            }
+        }
+        service.create(user);
+        return "redirect:/users";
+
     }
 
     @GetMapping("/admin/users/{id}")
@@ -50,7 +60,7 @@ class UserController {
         user.setId(id);
         return Optional.of(service.update(user))
                 .map(ResponseEntity::ok)
-                .orElseGet(ResponseEntity.notFound():: build);
+                .orElseGet(ResponseEntity.notFound()::build);
     }
 
     @DeleteMapping("/admin/users/{id}")
