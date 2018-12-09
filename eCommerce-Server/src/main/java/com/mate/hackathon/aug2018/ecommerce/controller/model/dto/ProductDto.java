@@ -1,6 +1,5 @@
 package com.mate.hackathon.aug2018.ecommerce.controller.model.dto;
 
-import com.mate.hackathon.aug2018.ecommerce.model.Category;
 import com.mate.hackathon.aug2018.ecommerce.model.Product;
 
 import java.util.List;
@@ -11,8 +10,9 @@ public class ProductDto {
     private String productCode;
     private String name;
     private String description;
-    private double price;
-    private Category category;
+    private Double price;
+    private String categoryName;
+    private Integer quantity;
 
     public static ProductDto of(Product product) {
         ProductDto productDto = new ProductDto();
@@ -20,7 +20,7 @@ public class ProductDto {
         productDto.setName(product.getName());
         productDto.setPrice(product.getPrice());
         productDto.setDescription(product.getDescription());
-        productDto.setCategory(product.getCategory());
+        productDto.setCategoryName(product.getCategory().getName());
         return productDto;
     }
 
@@ -50,20 +50,20 @@ public class ProductDto {
         this.description = description;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public Category getCategory() {
-        return category;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public String getProductCode() {
@@ -72,5 +72,13 @@ public class ProductDto {
 
     public void setProductCode(String productCode) {
         this.productCode = productCode;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 }

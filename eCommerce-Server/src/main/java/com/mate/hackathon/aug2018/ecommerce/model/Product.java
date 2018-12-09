@@ -19,7 +19,7 @@ public class Product {
     @Column(name = "DESCRIPTION")
     private String description;
     @Column(name = "PRICE")
-    private double price;
+    private Double price;
     @JoinColumn(name = "FK_CATEGORIES")
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonBackReference
@@ -30,7 +30,6 @@ public class Product {
         product.setName(productDto.getName());
         product.setPrice(productDto.getPrice());
         product.setDescription(productDto.getDescription());
-        product.setCategory(productDto.getCategory());
         return product;
     }
 
@@ -58,11 +57,11 @@ public class Product {
         this.description = description;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
