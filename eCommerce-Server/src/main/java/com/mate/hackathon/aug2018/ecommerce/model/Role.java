@@ -1,7 +1,5 @@
 package com.mate.hackathon.aug2018.ecommerce.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
