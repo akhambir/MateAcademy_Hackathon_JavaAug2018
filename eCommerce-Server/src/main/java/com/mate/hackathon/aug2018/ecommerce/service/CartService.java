@@ -12,7 +12,7 @@ public interface CartService {
 
     Cart save(Cart cart);
 
-    Cart setProductQuantity(Product product, User user, Integer quantity);
+    Cart setProductQuantity(Product product, Integer quantity, String categoryName, User user);
 
     Cart deleteProduct(Product product, User user);
 }

@@ -25,7 +25,7 @@ public class CartServiceImpl implements CartService {
         return cartRepository.save(cart);
     }
 
-    public Cart setProductQuantity(Product product, User user, Integer quantity) {
+    public Cart setProductQuantity(Product product, Integer quantity, String categoryName, User user) {
         Optional<Cart> cartFromDB = cartRepository.findByUser_Id(user.getId());
         Cart cart;
         if (cartFromDB.isPresent()) {
