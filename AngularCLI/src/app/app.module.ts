@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -14,6 +15,10 @@ import {ProductComponent} from "./component/product/product.component";
 
 import { RegisterComponent } from './register/register.component';
 import { PersonalAreaComponent } from './personal-area/personal-area.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CartComponent } from './component/cart/cart.component';
+import { AdminCategoriesComponent } from './component/admin/admin-categories/admin-categories.component';
+import { AdminCategoryComponent } from './component/admin/admin-category/admin-category.component';
 
 
 const appRoutes: Routes = [
@@ -23,7 +28,11 @@ const appRoutes: Routes = [
   {path: 'categories', component: CategoriesComponent},
   {path: 'category', component: CategoryComponent},
   {path: 'product', component: ProductComponent},
-  {path: 'personalArea', component: PersonalAreaComponent}
+  {path: 'personalArea', component: PersonalAreaComponent},
+  {path: 'cart', component: CartComponent},
+  {path: 'admin/categories', component: AdminCategoriesComponent},
+  {path: 'admin/category', component: AdminCategoryComponent},
+  {path: 'admin/categories', component: AdminCategoriesComponent}
   ];
 
 @NgModule({
@@ -36,14 +45,20 @@ const appRoutes: Routes = [
     CategoryComponent,
     CategoriesComponent,
     ProductComponent,
-    RegisterComponent
+    RegisterComponent,
+    CartComponent,
+    AdminCategoriesComponent,
+    AdminCategoryComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes,
       {enableTracing: true}),
     HttpClientModule,
     BrowserModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
