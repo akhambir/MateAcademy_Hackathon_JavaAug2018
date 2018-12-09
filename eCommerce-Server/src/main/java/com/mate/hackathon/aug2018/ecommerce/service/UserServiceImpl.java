@@ -26,10 +26,13 @@ public class UserServiceImpl implements UserService {
     public User create(User user) {
         Role.RoleName userRole = Role.RoleName.USER;
         Role role = Role.of(userRole);
-        role.setId((long) userRole.roleId);
+        role.setId(userRole.roleId);
+
         user.addRole(role);
         user.setToken(getToken());
         user.setPassword(encoder.encode(user.getPassword()));
+        role.addUser(user);
+
         return repository.save(user);
     }
 

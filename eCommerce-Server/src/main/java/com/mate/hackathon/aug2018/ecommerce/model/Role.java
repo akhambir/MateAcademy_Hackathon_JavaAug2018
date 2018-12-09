@@ -1,8 +1,15 @@
 package com.mate.hackathon.aug2018.ecommerce.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,21 +17,17 @@ import java.util.Set;
 @Table(name = "ROLES")
 public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "ROLE_NAME")
-    private String roleName;
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "USERS_TO_ROLES",
-            joinColumns = {@JoinColumn(name = "FK_ROLE_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "FK_USER_ID")})
+    @Column(name = "NAME")
+    private String name;
+    @ManyToMany(mappedBy = "roles")
     private Set<User> users = new HashSet<>();
 
     public Role() {
     }
 
     public Role(String roleName) {
-        this.roleName = roleName;
+        this.name = roleName;
     }
 
     public Long getId() {
@@ -35,12 +38,12 @@ public class Role {
         this.id = id;
     }
 
-    public String getRoleName() {
-        return roleName;
+    public String getName() {
+        return name;
     }
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Set<User> getUsers() {
@@ -51,17 +54,21 @@ public class Role {
         this.users = users;
     }
 
-    public static Role of(RoleName  roleName) {
+    public static Role of(RoleName roleName) {
         return new Role(roleName.name());
     }
 
+    public void addUser(User user) {
+        this.users.add(user);
+    }
+
     public enum RoleName {
-        ADMIN (1),
-        USER (2);
+        ADMIN(1L),
+        USER(2L);
 
-        public final int roleId;
+        public final Long roleId;
 
-        RoleName(int rileId) {
+        RoleName(Long rileId) {
             this.roleId = rileId;
         }
     }
