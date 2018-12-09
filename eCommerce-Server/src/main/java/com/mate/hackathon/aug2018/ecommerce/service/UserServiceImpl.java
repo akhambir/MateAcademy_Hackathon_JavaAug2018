@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
         user.addRole(role);
         user.setToken(getToken());
         user.setPassword(encoder.encode(user.getPassword()));
-//        role.getUsers().add(user);
+        role.addUser(user);
 
         return repository.save(user);
     }
