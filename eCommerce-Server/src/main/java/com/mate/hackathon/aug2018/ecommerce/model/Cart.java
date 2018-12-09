@@ -62,7 +62,24 @@ public class Cart {
         this.products = products;
     }
 
+    public void setProductAndQuantity(Product product, Integer quantity) {
+        if (this.getId() == null) {
+            CartDetails cartDetails = CartDetails.empty();
+            CartDetailsId cartDetailsId = CartDetailsId.empty();
+            cartDetailsId.setFkCartId(this.getId());
+            cartDetailsId.setProduct(product);
+            cartDetails.setCartDetailsId(cartDetailsId);
+            cartDetails.setQuantity(quantity);
 
-    //TODO: add product
+
+            if (products.contains(cartDetails)) {
+                int index = products.indexOf(cartDetails);
+                products.set(index, cartDetails);
+            } else {
+                products.add(cartDetails);
+            }
+        }
+    }
+
     //TODO: remove product
 }
