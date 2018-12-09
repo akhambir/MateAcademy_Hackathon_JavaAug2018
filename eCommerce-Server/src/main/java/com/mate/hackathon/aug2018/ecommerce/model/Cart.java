@@ -63,11 +63,8 @@ public class Cart {
     }
 
     public void setProductAndQuantity(Product product, Integer quantity) {
-        CartDetails cartDetails = CartDetails.empty();
-        CartDetailsId cartDetailsId = CartDetailsId.empty();
-        cartDetailsId.setFkCartId(this.getId());
-        cartDetailsId.setProduct(product);
-        cartDetails.setCartDetailsId(cartDetailsId);
+
+        CartDetails cartDetails = createCartDetails(product);
         cartDetails.setQuantity(quantity);
 
         if (products.contains(cartDetails)) {
@@ -79,6 +76,16 @@ public class Cart {
     }
 
     public void deleteProduct(Product product) {
-        products.remove(product);
+        CartDetails cartDetails = createCartDetails(product);
+        products.remove(cartDetails);
+    }
+
+    private CartDetails createCartDetails(Product product) {
+        CartDetails cartDetails = CartDetails.empty();
+        CartDetailsId cartDetailsId = CartDetailsId.empty();
+        cartDetailsId.setFkCartId(this.getId());
+        cartDetailsId.setProduct(product);
+        cartDetails.setCartDetailsId(cartDetailsId);
+        return cartDetails;
     }
 }
