@@ -20,7 +20,7 @@ public class CartDto {
 
         for (CartDetails cartDetails : cart.getCartDetails()) {
             cartDto.getProducts()
-                    .put(ProductDto.of(cartDetails.getCartDetailsId().getProduct()), cartDetails.getQuantity());
+                    .put(ProductDto.of(cartDetails.getProduct()), cartDetails.getQuantity());
         }
         return cartDto;
     }

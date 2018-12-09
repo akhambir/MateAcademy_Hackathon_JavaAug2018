@@ -1,20 +1,14 @@
 package com.mate.hackathon.aug2018.ecommerce.model;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
-public class CartDetailsId {
+public class CartDetailsId implements Serializable {
 
-    @ManyToOne
     private Long fkCartId;
-    @ManyToOne
-    @Column(name = "FK_PRODUCT_ID")
-    @MapsId
-    private Product product;
+    private Long fkProductId;
 
     public static CartDetailsId empty() {
         return new CartDetailsId();
@@ -28,12 +22,12 @@ public class CartDetailsId {
         this.fkCartId = fkCartId;
     }
 
-    public Product getProduct() {
-        return product;
+    public Long getFkProductId() {
+        return fkProductId;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setFkProductId(Long fkProductId) {
+        this.fkProductId = fkProductId;
     }
 
     @Override
@@ -42,11 +36,11 @@ public class CartDetailsId {
         if (!(o instanceof CartDetailsId)) return false;
         CartDetailsId that = (CartDetailsId) o;
         return Objects.equals(fkCartId, that.fkCartId) &&
-                Objects.equals(product, that.product);
+                Objects.equals(fkProductId, that.fkProductId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(fkCartId, product);
+        return Objects.hash(fkCartId, fkProductId);
     }
 }

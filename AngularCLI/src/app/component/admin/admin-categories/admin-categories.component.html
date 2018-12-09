@@ -16,17 +16,13 @@
     <div class="col-sm-4">
       <!-- Category -->
       <div class="single category">
-        <h3 class="side-title">Category name
-          {{category.name}} {{category.description}}</h3>
+        <h3 class="side-title">Admin page. Categories</h3>
         <ul class="list-unstyled">
-          <li *ngFor="let p of products">
-            <a href="/fkProductId/{{p.id}}"> Some info {{p.name}}<span class="pull-right">{{p.price}}</span></a>
+          <li *ngFor="let c of categories">
+            <a href="admin/category/{{c.id}}"> Some info {{c.name}}</a>
           </li>
-          <li><a href="" title="">Iphone <span class="pull-right">13</span></a></li>
-          <li><a href="" title="">Xiaomi <span class="pull-right">13</span></a></li>
-          <li><a href="" title="">IPad <span class="pull-right">13</span></a></li>
-          <li><a href="" title="">Nokia <span class="pull-right">13</span></a></li>
-
+          <li><a href="" title="">Mobile Phones </a></li>
+          <li><a href="" title="">Shoes </a></li>
         </ul>
       </div>
     </div>
@@ -34,6 +30,7 @@
 </div>
 </body>
 </html>
+
 
 
 

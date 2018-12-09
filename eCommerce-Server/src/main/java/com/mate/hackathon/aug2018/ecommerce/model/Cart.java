@@ -14,12 +14,11 @@ public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "CartDetailsId.fkCartId")
     private Long id;
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId("FK_CUSTOMER_ID")
     private User user;
-
+    @OneToMany(mappedBy = "cart", fetch = FetchType.LAZY)
     private List<CartDetails> cartDetails = new ArrayList<>();
     @Column(name = "AMOUNT")
     private Double amount;
@@ -95,7 +94,8 @@ public class Cart {
         CartDetails cartDetails = CartDetails.empty();
         CartDetailsId cartDetailsId = CartDetailsId.empty();
         cartDetailsId.setFkCartId(this.getId());
-        cartDetailsId.setProduct(product);
+        cartDetails.setProduct(product);
+        cartDetailsId.setFkProductId(product.getId());
         cartDetails.setCartDetailsId(cartDetailsId);
         return cartDetails;
     }

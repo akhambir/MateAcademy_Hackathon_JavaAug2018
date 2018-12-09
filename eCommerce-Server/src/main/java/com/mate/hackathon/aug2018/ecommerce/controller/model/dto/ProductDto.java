@@ -11,7 +11,7 @@ public class ProductDto {
     private String productCode;
     private String name;
     private String description;
-    private double price;
+    private Double price;
     private Category category;
 
     public static ProductDto of(Product product) {
@@ -50,11 +50,11 @@ public class ProductDto {
         this.description = description;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
