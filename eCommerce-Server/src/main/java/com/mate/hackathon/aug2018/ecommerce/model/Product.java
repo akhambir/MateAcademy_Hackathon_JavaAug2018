@@ -21,7 +21,7 @@ public class Product {
     @Column(name = "PRICE")
     private Double price;
     @JoinColumn(name = "FK_CATEGORIES")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JsonBackReference
     private Category category;
 
@@ -30,7 +30,6 @@ public class Product {
         product.setName(productDto.getName());
         product.setPrice(productDto.getPrice());
         product.setDescription(productDto.getDescription());
-        product.setCategory(productDto.getCategory());
         return product;
     }
 
