@@ -1,6 +1,7 @@
 package com.mate.hackathon.aug2018.ecommerce.service;
 
 import com.mate.hackathon.aug2018.ecommerce.model.Category;
+import com.mate.hackathon.aug2018.ecommerce.model.Product;
 import com.mate.hackathon.aug2018.ecommerce.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,5 +34,10 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void deleteByName(String name) {
         categoryRepository.deleteByName(name);
+    }
+
+    @Override
+    public Optional<Category> findByNameAndListProducts(String name) {
+        return categoryRepository.findByNameAndListProducts(name);
     }
 }
