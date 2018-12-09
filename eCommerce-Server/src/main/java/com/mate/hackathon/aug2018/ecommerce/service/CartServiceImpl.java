@@ -25,16 +25,16 @@ public class CartServiceImpl implements CartService {
         return cartRepository.save(cart);
     }
 
-    public Cart addProduct(Product product, User user) {
+    public Cart setProductQuantity(Product product, User user, Integer quantity) {
         Optional<Cart> cartFromDB = cartRepository.findByUser_Id(user.getId());
         Cart cart;
         if (cartFromDB.isPresent()) {
             cart = cartFromDB.get();
-            cart.addProduct(product);
+            cart.setProductAndQuantity(product, quantity);
         } else {
             cart = new Cart();
             cart.setUser(user);
-            cart.addProduct(product);
+            cart.setProductAndQuantity(product, quantity);
         }
         cartRepository.save(cart);
         return cart;
