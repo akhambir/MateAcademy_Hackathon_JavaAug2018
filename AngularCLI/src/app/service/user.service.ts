@@ -18,11 +18,14 @@ export class UserService {
   }
 
   public login(user: User): Observable<boolean> {
+    let form: FormData = new FormData();
+    form.append('username', user.email);
+    form.append('password', user.password);
     return this.http.post<User>(
-      'http://localhost:8080/login', user, {observe: 'response'}).pipe(
+      'http://localhost:8080/login', form, {responseType: 'text'}).pipe(
         map(resp => {
+          console.log(resp);
           localStorage.setItem('email', JSON.stringify(user));
-
           return true;
         }));
   }
