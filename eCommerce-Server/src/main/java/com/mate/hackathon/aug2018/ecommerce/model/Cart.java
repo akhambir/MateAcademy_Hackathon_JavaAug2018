@@ -70,7 +70,6 @@ public class Cart {
         cartDetails.setCartDetailsId(cartDetailsId);
         cartDetails.setQuantity(quantity);
 
-
         if (products.contains(cartDetails)) {
             int index = products.indexOf(cartDetails);
             products.set(index, cartDetails);
@@ -79,5 +78,7 @@ public class Cart {
         }
     }
 
-    //TODO: remove product
+    public void deleteProduct(Product product) {
+        products.remove(product);
+    }
 }
