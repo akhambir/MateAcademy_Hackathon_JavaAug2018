@@ -5,19 +5,26 @@ import com.mate.hackathon.aug2018.ecommerce.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
+    private BCryptPasswordEncoder encoder;
+
+    @Autowired
     private UserRepository repository;
 
     public User create(User user) {
+        user.setToken(getToken());
+        user.setPassword(encoder.encode(user.getPassword()));
         return repository.save(user);
     }
 
@@ -52,6 +59,10 @@ public class UserServiceImpl implements UserService {
                 .password(user.getPassword())
                 .authorities(Collections.emptyList())
                 .build();
+    }
+
+    private String getToken() {
+        return UUID.randomUUID().toString();
     }
 }
 
