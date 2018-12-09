@@ -1,15 +1,14 @@
 package com.mate.hackathon.aug2018.ecommerce.controller;
 
+import com.mate.hackathon.aug2018.ecommerce.controller.model.dto.CategoryDto;
 import com.mate.hackathon.aug2018.ecommerce.controller.model.dto.ProductDto;
+import com.mate.hackathon.aug2018.ecommerce.model.Category;
 import com.mate.hackathon.aug2018.ecommerce.model.Product;
+import com.mate.hackathon.aug2018.ecommerce.service.CategoryService;
 import com.mate.hackathon.aug2018.ecommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +18,9 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private CategoryService categoryService;
 
     @GetMapping("/admin/products")
     public ResponseEntity<List<ProductDto>> getAllProducts() {
@@ -36,7 +38,7 @@ public class ProductController {
                 .orElseGet(ResponseEntity.notFound()::build);
     }
 
-    @PostMapping("/admin/products/save")
+    @PostMapping("/admin/products")
     public ResponseEntity<List<ProductDto>> saveProduct(ProductDto productDto) {
         productService.save(Product.of(productDto));
         return getAllProducts();
@@ -50,7 +52,6 @@ public class ProductController {
                 .orElseGet(ResponseEntity.notFound()::build);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/admin/products/create")
     public ResponseEntity<ProductDto> showCreatePage() {
         return ResponseEntity.ok(ProductDto.empty());
