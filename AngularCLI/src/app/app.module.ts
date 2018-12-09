@@ -24,6 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CartComponent } from './component/cart/cart.component';
 import { AdminCategoriesComponent } from './component/admin/admin-categories/admin-categories.component';
 import { AdminCategoryComponent } from './component/admin/admin-category/admin-category.component';
+import { EditComponent } from './personal-area/edit/edit.component';
 
 
 const appRoutes: Routes = [
@@ -38,7 +39,8 @@ const appRoutes: Routes = [
   {path: 'cart', component: CartComponent},
   {path: 'admin/categories', component: AdminCategoriesComponent},
   {path: 'admin/category', component: AdminCategoryComponent},
-  {path: 'admin/categories', component: AdminCategoriesComponent}
+  {path: 'admin/categories', component: AdminCategoriesComponent},
+  {path: 'personalArea/edit', component: EditComponent}
   ];
 
 @NgModule({
@@ -56,6 +58,7 @@ const appRoutes: Routes = [
     CartComponent,
     AdminCategoriesComponent,
     AdminCategoryComponent,
+    EditComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes,
