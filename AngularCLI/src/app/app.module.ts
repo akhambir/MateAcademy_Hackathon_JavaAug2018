@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -7,6 +8,8 @@ import { LoginComponent } from './login/login.component';
 import {RouterModule, Routes} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
+import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 import {CategoryComponent} from "./component/category/category.component";
 import {CategoriesComponent} from "./component/categories/categories.component";
@@ -14,6 +17,8 @@ import {ProductComponent} from "./component/product/product.component";
 
 import { RegisterComponent } from './register/register.component';
 import { PersonalAreaComponent } from './personal-area/personal-area.component';
+import { HomeComponent } from './home/home.component';
+
 
 
 const appRoutes: Routes = [
@@ -22,7 +27,8 @@ const appRoutes: Routes = [
   {path: 'categories', component: CategoriesComponent},
   {path: 'product', component: ProductComponent},
   {path: 'category', component: CategoryComponent},
-  {path: 'personalArea', component: PersonalAreaComponent}
+  {path: 'personalArea', component: PersonalAreaComponent},
+  {path: '', component: HomeComponent}
   ];
 
 @NgModule({
@@ -35,14 +41,18 @@ const appRoutes: Routes = [
     CategoryComponent,
     CategoriesComponent,
     ProductComponent,
-    RegisterComponent
+    RegisterComponent,
+    HomeComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes,
       {enableTracing: true}),
     HttpClientModule,
     BrowserModule,
-    FormsModule
+    FormsModule,
+    NgbModule,
+    NgbPaginationModule,
+    NgbAlertModule
   ],
   providers: [],
   bootstrap: [AppComponent]
