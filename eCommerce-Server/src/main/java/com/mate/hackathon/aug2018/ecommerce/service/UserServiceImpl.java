@@ -54,6 +54,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Optional<User> getByEmail(String email) {
+        return repository.findByEmail(email);
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return repository.findByEmail(email)
                 .map(this::toUserDetails)
