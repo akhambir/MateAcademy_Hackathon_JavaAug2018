@@ -1,11 +1,20 @@
 package com.mate.hackathon.aug2018.ecommerce.model;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "USERS")
+@Table(name = "USERS" )
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,7 +23,6 @@ public class User {
     private String firstName;
     @Column(name = "LAST_NAME")
     private String lastName;
-
     @Column(name = "EMAIL")
     private String email;
     @Column(name = "PASSWORD")
@@ -23,7 +31,6 @@ public class User {
     private String token;
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
     private Set<Role> roles = new HashSet<>();
-
 
     public User() {
     }
@@ -36,6 +43,17 @@ public class User {
         this.token = token;
     }
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public void addRole(Role role) {
+        this.roles.add(role);
+    }
 
     public Long getId() {
         return id;
@@ -82,16 +100,7 @@ public class User {
     }
 
     public void setToken(String token) {
-
         this.token = token;
     }
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
 
 }
