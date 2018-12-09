@@ -9,6 +9,7 @@ public class CategoryDto {
 
     private String name;
     private String description;
+    private List<ProductDto> products;
 
     public String getName() {
         return name;
@@ -26,15 +27,24 @@ public class CategoryDto {
         this.description = description;
     }
 
-    public static CategoryDto of(Category category) {
-        CategoryDto categoryDto = new CategoryDto();
-        categoryDto.setName(category.getName());
-        categoryDto.setDescription(category.getDescription());
-        return categoryDto;
+    public List<ProductDto> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<ProductDto> products) {
+        this.products = products;
     }
 
     public static List<CategoryDto> of(List<Category> allCategories) {
         return allCategories.stream().map(CategoryDto::of).collect(Collectors.toList());
+    }
+
+    public static CategoryDto of(Category category) {
+        CategoryDto categoryDto = new CategoryDto();
+        categoryDto.setName(category.getName());
+        categoryDto.setDescription(category.getDescription());
+        categoryDto.setProducts(ProductDto.of(category.getProducts()));
+        return categoryDto;
     }
 
 }
