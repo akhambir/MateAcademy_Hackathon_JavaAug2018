@@ -1,10 +1,12 @@
 package com.mate.hackathon.aug2018.ecommerce.model;
 
 import com.mate.hackathon.aug2018.ecommerce.controller.model.dto.CartDto;
+import com.mate.hackathon.aug2018.ecommerce.controller.model.dto.ProductDto;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @Table(name = "CARTS")
@@ -18,15 +20,24 @@ public class Cart {
     @MapsId("FK_CUSTOMER_ID")
     private User user;
 
-    private List<CartDetails> products = new ArrayList<>();
+    private List<CartDetails> cartDetails = new ArrayList<>();
     @Column(name = "AMOUNT")
     private Double amount;
 
     public static Cart of(CartDto cartDto) {
         Cart cart = new Cart();
         cart.setUser(cartDto.getUser());
-        cart.setProducts(cartDto.getProducts());
         cart.setAmount(cartDto.getAmount());
+
+        Map<ProductDto, Integer> products = cartDto.getProducts();
+
+        for (Map.Entry<ProductDto, Integer> productDtoIntegerEntry : products.entrySet()) {
+            ProductDto productDto = productDtoIntegerEntry.getKey();
+            Product product = Product.of(productDto);
+            Integer quantity = productDtoIntegerEntry.getValue();
+            cart.setProductAndQuantity(product, quantity);
+        }
+
         return cart;
     }
 
@@ -54,12 +65,12 @@ public class Cart {
         this.amount = amount;
     }
 
-    public List<CartDetails> getProducts() {
-        return products;
+    public List<CartDetails> getCartDetails() {
+        return cartDetails;
     }
 
-    public void setProducts(List<CartDetails> products) {
-        this.products = products;
+    public void setCartDetails(List<CartDetails> cartDetails) {
+        this.cartDetails = cartDetails;
     }
 
     public void setProductAndQuantity(Product product, Integer quantity) {
@@ -67,17 +78,17 @@ public class Cart {
         CartDetails cartDetails = createCartDetails(product);
         cartDetails.setQuantity(quantity);
 
-        if (products.contains(cartDetails)) {
-            int index = products.indexOf(cartDetails);
-            products.set(index, cartDetails);
+        if (this.cartDetails.contains(cartDetails)) {
+            int index = this.cartDetails.indexOf(cartDetails);
+            this.cartDetails.set(index, cartDetails);
         } else {
-            products.add(cartDetails);
+            this.cartDetails.add(cartDetails);
         }
     }
 
     public void deleteProduct(Product product) {
         CartDetails cartDetails = createCartDetails(product);
-        products.remove(cartDetails);
+        this.cartDetails.remove(cartDetails);
     }
 
     private CartDetails createCartDetails(Product product) {
