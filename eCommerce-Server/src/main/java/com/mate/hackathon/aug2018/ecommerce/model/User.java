@@ -1,10 +1,14 @@
 package com.mate.hackathon.aug2018.ecommerce.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.util.HashSet;
@@ -26,7 +30,12 @@ public class User {
     private String password;
     @Column(name = "TOKEN")
     private String token;
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany
+    @JsonBackReference
+    @JoinTable(name = "USERS_TO_ROLES",
+            joinColumns = { @JoinColumn(name = "FK_USER_ID") },
+            inverseJoinColumns = { @JoinColumn(name = "FK_ROLE_ID") }
+    )
     private Set<Role> roles = new HashSet<>();
 
     public User() {
