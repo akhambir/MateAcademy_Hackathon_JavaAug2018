@@ -20,12 +20,12 @@ public class CartController {
     private CartService cartService;
 
     @GetMapping("/buy")
-    public ResponseEntity<CartDto> addProductToCart(@RequestBody ProductDto productDto, User user) {
-        Cart cart = cartService.addProduct(Product.of(productDto), user);
+    public ResponseEntity<CartDto> addProductToCart(@RequestBody ProductDto productDto, User user, Integer quantity) {
+        Cart cart = cartService.setProductQuantity(Product.of(productDto), user, quantity);
         return ResponseEntity.ok(CartDto.of(cart));
     }
 
-    @DeleteMapping("/cart/delete")
+    @DeleteMapping("/cart/deleteProduct")
     public ResponseEntity<CartDto> deleteProductFromCart(@RequestBody ProductDto productDto, User user) {
         Cart cart = cartService.deleteProduct(Product.of(productDto), user);
         return ResponseEntity.ok(CartDto.of(cart));
