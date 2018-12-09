@@ -6,7 +6,7 @@ import {HttpClient} from "@angular/common/http";
 @Injectable({
   providedIn: 'root'
 })
-export class CategoryService {
+export class CategoriesService {
 
   constructor(private http: HttpClient) { }
 
@@ -14,7 +14,5 @@ export class CategoryService {
     return this.http.get<Array<Category>>('http://localhost:8080/categories');
   }
 
-   public getCategory(id: string): Observable<Category> {
-     return this.http.get<Category>('http://localhost:8080/category/'.concat(id));
-  }
+
 }

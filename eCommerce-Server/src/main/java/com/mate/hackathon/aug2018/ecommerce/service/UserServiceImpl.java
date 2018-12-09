@@ -60,6 +60,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+
         return repository.findByEmail(email)
                 .map(this::toUserDetails)
                 .orElseGet(() -> org.springframework.security.core.userdetails.User.builder().disabled(true).build());

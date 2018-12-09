@@ -21,13 +21,22 @@
           <li *ngFor="let c of categories">
             <a href="/category/{{c.id}}"> Some info {{c.name}}</a>
           </li>
-          <li><a href="" title="">Mobile Phones </a></li>
-          <li><a href="" title="">Shoes </a></li>
+          <li><a href="" title="">Test category 1 </a></li>
+          <li><a href="" title="">Test category 2 </a></li>
         </ul>
       </div>
     </div>
   </div>
 </div>
+
+<div class="categories_container">
+  <div class="categories">
+    <h2 *ngFor="let c of categories">
+      {{c.name}}
+    </h2>
+  </div>
+</div>
+
 </body>
 </html>
 

@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   }
 
   public login() {
+    console.log(this.user);
     this.userService.login(this.user).subscribe(
       resp => {
         this.router.navigate(['/categories']);
