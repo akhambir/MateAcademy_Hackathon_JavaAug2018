@@ -60,7 +60,7 @@ public class CategoryController {
         return getAllCategory();
     }
 
-    @RequestMapping(value = "/category/{name}", method = RequestMethod.GET)
+    @RequestMapping(value = "/categoryProductsList/{name}", method = RequestMethod.GET)
     public ResponseEntity<CategoryDto> finByNameAndListProducts(@PathVariable String name) {
         return categoryService.findByNameAndListProducts(name)
                 .map(CategoryDto::of)

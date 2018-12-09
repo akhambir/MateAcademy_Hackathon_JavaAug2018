@@ -15,6 +15,6 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
 
     void deleteByName(String name);
 
-    @Query("SELECT c FROM CATEGORIES c JOIN FETCH c.products WHERE c.name = (:name)")
+    @Query("SELECT c FROM Category c JOIN FETCH c.products WHERE c.name = (:name)")
     Optional<Category> findByNameAndListProducts(@Param("name") String name);
 }
