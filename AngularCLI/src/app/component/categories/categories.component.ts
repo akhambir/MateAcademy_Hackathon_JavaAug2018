@@ -9,7 +9,7 @@ import {Category} from '../../model/category';
 })
 export class CategoriesComponent implements OnInit {
 
-  private categories: Array<Category> = [];
+  categories: Array<Category> = [];
 
   constructor(private categoryService: CategoryService) {
   }

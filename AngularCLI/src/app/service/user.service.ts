@@ -13,19 +13,19 @@ export class UserService {
 
   public addUser(user: User): Observable<User> {
     return this.http.post<User>(
-      'http://localhost:8080/registration', user
+      'http://localhost:8080/users', user
     );
   }
 
-  /*public login(user: User): Observable<boolean> {
+  public login(user: User): Observable<boolean> {
     return this.http.post<User>(
       'http://localhost:8080/login', user, {observe: 'response'}).pipe(
         map(resp => {
-          localStorage.setItem('email', {user: user.email});
-        })
-    )
-  }*/
-<<<<<<< HEAD
+          localStorage.setItem('email', JSON.stringify(user));
+
+          return true;
+        }));
+  }
 
   public pollUser(): Observable<User> {
     let user: User = new User();
@@ -33,6 +33,4 @@ export class UserService {
 
     return this.http.post<User>('http://localhost:8080/user/by-email', user);
   }
-=======
->>>>>>> a4372681336cf2e40fd2fcd318a26e58f62ac180
 }

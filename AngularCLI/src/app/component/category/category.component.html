@@ -1,3 +1,40 @@
-<p>
-  category works!
-</p>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='//netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' rel='stylesheet'/>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <!-- Category -->
+      <div class="single category">
+        <h3 class="side-title">Category name
+          {{category.name}} {{category.description}}</h3>
+        <ul class="list-unstyled">
+          <li *ngFor="let p of products">
+            <a href="/product/{{p.id}}"> Some info {{p.name}}<span class="pull-right">{{p.price}}</span></a>
+          </li>
+          <li><a href="" title="">Iphone <span class="pull-right">13</span></a></li>
+          <li><a href="" title="">Xiaomi <span class="pull-right">13</span></a></li>
+          <li><a href="" title="">IPad <span class="pull-right">13</span></a></li>
+          <li><a href="" title="">Nokia <span class="pull-right">13</span></a></li>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+
+
+
+
