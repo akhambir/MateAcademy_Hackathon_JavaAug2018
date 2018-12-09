@@ -49,7 +49,8 @@ class UserController {
     public ResponseEntity<User> updateUser(@RequestBody User user) {
         return service.getByEmail(user.getEmail())
                 .map(u -> { user.setId(u.getId()); return u; })
-                .map(u -> {user.setToken(u.getToken()); return user;})
+                .map(u -> { user.setToken(u.getToken()); return u; })
+                .map(u -> { user.setPassword(u.getPassword()); return user; })
                 .map(service::update)
                 .map(ResponseEntity::ok)
                 .orElseGet(ResponseEntity.notFound():: build);
