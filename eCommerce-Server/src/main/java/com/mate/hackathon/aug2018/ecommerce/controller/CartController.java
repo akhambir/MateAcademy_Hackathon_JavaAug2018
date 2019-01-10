@@ -15,12 +15,14 @@ import java.security.Principal;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/cart")
 public class CartController {
 
     @Autowired
     private CartService cartService;
     @Autowired
     private UserService userService;
+
     @PostMapping("/buy")
     public ResponseEntity<CartDto> addProductToCart(@RequestBody ProductDto productDto, Principal principal) {
         String name = principal.getName();
@@ -30,7 +32,7 @@ public class CartController {
         return ResponseEntity.ok(CartDto.of(cart));
     }
 
-    @DeleteMapping("/cart/deleteProduct")
+    @DeleteMapping("/deleteProduct")
     public ResponseEntity<CartDto> deleteProductFromCart(@RequestBody ProductDto productDto, User user) {
         Cart cart = cartService.deleteProduct(Product.of(productDto), user);
         return ResponseEntity.ok(CartDto.of(cart));
